@@ -1,0 +1,22 @@
+{
+  "$schema": "https://claude.ai/code/settings-schema.json",
+  "permissions": {
+    "allow": [
+      "npm run dev",
+      "npm run build",
+      "npm run lint",
+      "npm run test",
+      "npm run test:e2e",
+      "npm run typecheck",
+      "npx tsc --noEmit",
+      "npx vitest",
+      "npx playwright test"
+    ],
+    "deny": [
+      "rm -rf /",
+      "git push --force",
+      "git reset --hard"
+    ]
+  },
+  "env": {}
+}
