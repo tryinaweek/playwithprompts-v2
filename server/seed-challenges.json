@@ -1,0 +1,618 @@
+[
+  {
+    "id": "slip-01",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Beach walk distance",
+    "payload": {
+      "intro": "An AI assistant summarized this vacation-rental listing:",
+      "source": "Cozy Pines Cottage sleeps six across three bedrooms and has two full bathrooms. The nightly rate is $180, with a two-night minimum on weekends. The beach is a ten-minute walk down a marked trail. Pets are not allowed, and smoking is prohibited anywhere on the property. Parking is available for up to two cars.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Cozy Pines Cottage sleeps six people and has two full bathrooms.",
+        "It costs $180 per night, with a two-night minimum on weekends.",
+        "The beach is about a thirty-minute walk away via a marked trail.",
+        "Pets and smoking are not allowed, and there is parking for two cars."
+      ]
+    },
+    "answer": { "segmentIndex": 2 },
+    "explanation": "The listing says the beach is a ten-minute walk, but the summary stretched it to thirty. AI summaries most often slip on numbers, so always re-check any figure against the original before you rely on it."
+  },
+  {
+    "id": "robot-01",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Hotel review",
+    "payload": {
+      "intro": "One of these two hotel reviews was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nestled in the heart of downtown, this hotel offers the perfect blend of comfort, convenience, and charm. The rooms are spacious and inviting, the staff is friendly and attentive, and the amenities are truly top-notch. Whether you are traveling for business or pleasure, this property delivers a seamless experience from check-in to check-out. The vibrant location puts you steps away from dining, shopping, and entertainment. I would not hesitate to recommend it to anyone visiting the area."
+        },
+        {
+          "id": "b",
+          "text": "We stayed three nights in room 412, which faces the parking garage — ask for the other side if you are a light sleeper, because the garbage trucks come at 5. That said, the beds are genuinely great, and the woman at the front desk (Renata, I think) let us store bags until our 9 p.m. flight and drew us a map to a taco place that turned out to be the best meal of the trip. The elevator smells like the pool. Would stay again."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "The human review names a room number, a front-desk employee, and a weird true detail about the elevator. The AI review is all adjectives in threes — comfort, convenience, and charm — with words like nestled, seamless, and vibrant but zero specifics. Concrete, checkable details are the strongest sign of a real reviewer."
+  },
+  {
+    "id": "slip-02",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Cookie count",
+    "payload": {
+      "intro": "An AI assistant summarized this cookie recipe:",
+      "source": "This oatmeal cookie recipe makes 24 cookies. Cream the butter with brown sugar, then mix in the dry ingredients. Chill the dough for one hour before baking. Bake at 350 degrees for 12 minutes, until the edges are golden. Store in an airtight container for up to five days.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Chill the dough for an hour before you bake.",
+        "The recipe makes a dozen cookies.",
+        "Bake at 350 degrees for 12 minutes until the edges turn golden.",
+        "Finished cookies keep in an airtight container for up to five days."
+      ]
+    },
+    "answer": { "segmentIndex": 1 },
+    "explanation": "The recipe makes 24 cookies, but the summary cut it to a dozen. Quantities are one of the most common things AI gets wrong when condensing text — double-check yields and amounts before you shop or bake."
+  },
+  {
+    "id": "robot-02",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Out-of-office reply",
+    "payload": {
+      "intro": "One of these two out-of-office replies was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "I'm out through Friday the 18th at my sister's wedding in Traverse City, where the cell service is famously bad. If this is about the Henley invoice, Dana Okafor has the folder and the password. Anything else can wait until Monday — and if it truly cannot, text me, but know that I will be answering while wearing a lavender bridesmaid dress."
+        },
+        {
+          "id": "b",
+          "text": "Thank you for your email. I am currently out of the office and will have limited access to messages during this time. I appreciate your patience and understanding, and I will respond to your inquiry as promptly as possible upon my return. For urgent matters, please reach out to a member of my team, who will be happy to assist you. Thank you again for your understanding, and I look forward to connecting soon."
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human reply names a real place, a real coworker, and one oddly specific detail about a bridesmaid dress. The AI version never says where the person is, when they return, or who exactly to contact — it is polished but empty. When a message could apply to literally anyone, that is a robot tell."
+  },
+  {
+    "id": "slip-03",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Meeting day swap",
+    "payload": {
+      "intro": "An AI assistant summarized this team announcement:",
+      "source": "Team update: the quarterly budget review has been moved from Tuesday to Thursday at 10 a.m. Maria will present the Q3 numbers, so please send her your department figures by Wednesday noon. Lunch will be provided in the main conference room. Please RSVP to Priya by Friday so we can get a headcount.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "The quarterly budget review now takes place on Friday at 10 a.m.",
+        "Maria is presenting the Q3 numbers and needs department figures by Wednesday noon.",
+        "Lunch will be provided in the main conference room.",
+        "RSVP to Priya by Friday for the headcount."
+      ]
+    },
+    "answer": { "segmentIndex": 0 },
+    "explanation": "The meeting moved to Thursday, not Friday — the summary grabbed the wrong day, possibly confusing it with the RSVP deadline. When a text contains several dates, AI often shuffles them, so match each date to the right event."
+  },
+  {
+    "id": "robot-03",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Travel mug review",
+    "payload": {
+      "intro": "One of these two product reviews was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bought this mug in October, and it has been dropped in a parking garage twice, rolled under an airport seat, and left in the car through a Minnesota January. The lid finally cracked last week, and the company mailed a replacement without arguing with me, which is honestly why I'm writing this review. Coffee is still warm at noon if I brew at seven. The handle is too small for gloves, though."
+        },
+        {
+          "id": "b",
+          "text": "This travel mug is an absolute game-changer for anyone on the go. The sleek design, durable construction, and impressive heat retention make it a standout choice in a crowded market. Whether you are commuting to work, heading to the gym, or embarking on a weekend adventure, this mug keeps your beverages at the perfect temperature. It is stylish, functional, and built to last. I highly recommend it to anyone looking to upgrade their daily routine."
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human review tells a specific story — a Minnesota winter, a cracked lid, a replacement in the mail — and admits a flaw about the handle. The AI review runs on triads (sleek, durable, impressive) and the classic whether-you-are-X-or-Y formula with no lived experience. Real reviewers describe what actually happened to them."
+  },
+  {
+    "id": "slip-04",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Book fair payments",
+    "payload": {
+      "intro": "An AI assistant summarized this school newsletter item:",
+      "source": "The fall book fair runs October 14 through 18 in the school library. Each class will visit during its regular library period. Parent volunteers can sign up through the online form on the PTA page. Both cash and card payments are accepted at the register. All proceeds go toward new library books.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "The book fair runs October 14-18 in the school library.",
+        "Classes will visit during their regular library periods.",
+        "Parents can volunteer via the online form on the PTA page.",
+        "Note that the register is cash-only, so send exact change."
+      ]
+    },
+    "answer": { "segmentIndex": 3 },
+    "explanation": "The newsletter says both cash and card are accepted, but the summary claims cash-only and even invents advice about exact change. AI sometimes flips a fact and then confidently builds on the mistake — watch for follow-on advice that hangs off an error."
+  },
+  {
+    "id": "robot-04",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Lost cat post",
+    "payload": {
+      "intro": "One of these two neighborhood-forum posts about a lost cat was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Attention neighbors! Our beloved cat has gone missing, and we are reaching out to this wonderful community for help. He is friendly, gentle, and loved by everyone who meets him. If you see him, please do not hesitate to reach out — any information, no matter how small, would be greatly appreciated. We are so grateful to live in such a caring and supportive neighborhood. Together, I know we can bring him home safely. Thank you all so much!"
+        },
+        {
+          "id": "b",
+          "text": "Our orange cat Walnut got out Tuesday night through the screen my husband swore he fixed. He is big, one ear has a notch, and he will not come to his name — but he will absolutely come to the crinkle of a cheese wrapper, so if you see him, try that. Last spotted near the Hendersons' woodpile on Alder. He is microchipped. Please check your garages and sheds before closing them up tonight."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "The human post has everything a search actually needs: the cat's name, markings, last location, and the cheese-wrapper trick. The AI post never even describes the cat — it is warm, generic community talk with no usable detail. Missing basic facts that any real poster would include is a giveaway."
+  },
+  {
+    "id": "slip-05",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Invoice total flip",
+    "payload": {
+      "intro": "An AI assistant summarized this invoice email:",
+      "source": "Invoice #4471 covers landscaping services completed in June and totals $2,300. Payment is due within 30 days of the invoice date. A late fee of 2% per month applies to overdue balances. Questions can be directed to billing@greenscape.example. Thank you for your business.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Invoice #4471 is for June landscaping work and totals $3,200.",
+        "Payment is due within 30 days of the invoice date.",
+        "Overdue balances accrue a 2% monthly late fee.",
+        "Billing questions go to billing@greenscape.example."
+      ]
+    },
+    "answer": { "segmentIndex": 0 },
+    "explanation": "The invoice totals $2,300, but the summary swapped the digits to $3,200. Transposed digits are a classic AI slip that looks perfectly plausible — always verify dollar amounts against the source document before paying or forwarding."
+  },
+  {
+    "id": "robot-05",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Recipe headnote",
+    "payload": {
+      "intro": "One of these two recipe introductions was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "My grandmother made this cake with margarine because that is what was on sale at the A&P in 1987, and she would be scandalized that I use butter. It is ugly — it sinks in the middle every single time, and you just frost over the crater. Nobody has ever left a piece on the plate. I make it for every birthday in the family, including my own, which my kids find embarrassing."
+        },
+        {
+          "id": "b",
+          "text": "This delightful cake recipe is the perfect combination of simple ingredients, rich flavor, and effortless preparation. Whether you are baking for a special occasion or simply craving something sweet, this crowd-pleasing treat is sure to impress family and friends alike. The moist crumb and decadent frosting come together beautifully, creating a dessert that is as satisfying to make as it is to eat. Get ready for this one to become a staple in your kitchen!"
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human headnote admits the cake is ugly and sinks every time — real recipe stories include flaws and oddly specific history like margarine from the A&P in 1987. The AI version is pure superlatives (delightful, decadent, crowd-pleasing) that could sit atop any recipe on earth. Imperfection plus specificity signals a real person."
+  },
+  {
+    "id": "slip-06",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Checked bag inversion",
+    "payload": {
+      "intro": "An AI assistant summarized this flight itinerary email:",
+      "source": "Your flight departs Denver at 7:15 a.m. on Friday. You have a two-hour layover in Chicago before the connection to Boston. Arrival in Boston is scheduled for 3:40 p.m. local time. Your fare includes one checked bag and a carry-on. You are assigned seat 14C on both flights.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "You leave Denver at 7:15 a.m. on Friday.",
+        "There is a two-hour layover in Chicago.",
+        "You land in Boston at 3:40 p.m., and you will need to pay separately to check a bag.",
+        "You are in seat 14C on both flights."
+      ]
+    },
+    "answer": { "segmentIndex": 2 },
+    "explanation": "The fare already includes one checked bag, but the summary claims you would have to pay extra. Notice how the wrong claim is tucked onto the end of a correct one — AI errors often hide in the second half of an otherwise accurate sentence."
+  },
+  {
+    "id": "robot-06",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "Missed-meeting apology",
+    "payload": {
+      "intro": "One of these two apology emails for a missed meeting was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "I sincerely apologize for missing our meeting this afternoon. I understand that your time is valuable, and I regret any inconvenience my absence may have caused. Please know that this is not a reflection of my commitment to our work together. I would greatly appreciate the opportunity to reschedule at a time that is convenient for you. Thank you for your patience and understanding, and I look forward to reconnecting soon."
+        },
+        {
+          "id": "b",
+          "text": "I'm so sorry about this afternoon — I had us down for 2:00, not 12:00. I entered it on my phone while boarding a train, which is apparently something I should never do again. You waited twenty minutes and that is on me. I'm free Thursday any time after 10, or Friday before lunch; I'll let you pick since I'm the one who blew it. The draft you sent is good, by the way — comments coming tonight."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "The human explains exactly what went wrong (2:00 versus 12:00, entered on a train), owns it, and offers concrete times. The AI apology is all abstractions — valuable time, any inconvenience, patience and understanding — with no actual reason and no specific fix. A real apology contains the embarrassing details."
+  },
+  {
+    "id": "slip-07",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Recommendation inversion",
+    "payload": {
+      "intro": "An AI assistant summarized this phone review:",
+      "source": "I've used this phone for three months. The battery is outstanding — I regularly get two full days on a charge. The speaker is disappointingly tinny, and the back panel scratches if you look at it wrong, so buy a case. Even so, I'd tell a friend to buy this phone tomorrow.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "The reviewer has used the phone for three months.",
+        "Battery life is a highlight, often lasting two full days.",
+        "The speaker sounds tinny, and the back scratches easily without a case.",
+        "In the end, the reviewer says they would not recommend the phone to a friend."
+      ]
+    },
+    "answer": { "segmentIndex": 3 },
+    "explanation": "The reviewer explicitly says they would tell a friend to buy the phone tomorrow — the summary inverted the verdict, probably because the review listed several complaints. AI can mistake a list of criticisms for a negative conclusion, so always check the author's actual bottom line."
+  },
+  {
+    "id": "robot-07",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "Cover-letter opening",
+    "payload": {
+      "intro": "One of these two cover-letter openings was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "I am excited to apply for the Office Manager position at your company. With a proven track record of success in fast-paced environments, I am confident that my skills in organization, communication, and problem-solving make me an ideal fit for this role. I am passionate about creating efficient workflows and supporting teams so they can do their best work. I would welcome the opportunity to bring my experience and enthusiasm to your organization."
+        },
+        {
+          "id": "b",
+          "text": "I saw your posting while I was on hold with a printer-repair company, which felt fitting, because keeping a twelve-person veterinary clinic running has mostly meant solving whatever broke that morning. In four years there I rebuilt the scheduling system twice, cut our supply spending by about a fifth, and learned that a calm front desk keeps the whole building calm. I would like to do the same for you."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "The human letter opens with a small true scene and backs it with measurable facts: twelve-person clinic, four years, spending cut by a fifth. The AI letter leans on stock phrases — proven track record, fast-paced environment, ideal fit — and a tidy triad of skills that could describe any applicant. Specific accomplishments beat polished boilerplate."
+  },
+  {
+    "id": "slip-08",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Utilities mix-up",
+    "payload": {
+      "intro": "An AI assistant summarized this rental email:",
+      "source": "The apartment rents for $1,450 a month on a 12-month lease. Water and trash service are included in the rent; the tenant sets up and pays for electricity. The security deposit equals one month's rent and is refundable at move-out, less any damages. Applications are processed within three business days.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Rent is $1,450 per month on a 12-month lease.",
+        "Water, trash, and electricity are all included in the rent.",
+        "The deposit is one month's rent, refundable at move-out minus any damages.",
+        "Applications take up to three business days to process."
+      ]
+    },
+    "answer": { "segmentIndex": 1 },
+    "explanation": "The email says the tenant pays for electricity — only water and trash are included, but the summary lumped all three together. When AI summarizes lists with exceptions, it tends to smooth the exception away, so re-read any which-items-are-included details yourself."
+  },
+  {
+    "id": "robot-08",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "Thank-you note",
+    "payload": {
+      "intro": "One of these two thank-you notes to a neighbor was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Thank you for the soup and for shoveling our walk while Pete's ankle mends. He wants you to know your chicken and rice was better than mine, an opinion he shared while eating my chicken and rice. We owe you one — and when the rhubarb comes in this spring, expect a pie whether you want one or not. You are a good neighbor, Marie, and we are lucky to have you two doors down."
+        },
+        {
+          "id": "b",
+          "text": "Thank you so much for your incredible kindness and generosity. Your thoughtfulness during this time has truly meant the world to us, and we feel so fortunate to have such wonderful people in our lives. It is neighbors like you who make this community so special. We are deeply grateful for everything you have done, and we hope to return the favor someday. With heartfelt thanks and warmest wishes to you and your family!"
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human note names what was actually done — soup, shoveling, Pete's ankle — and includes a gently teasing detail about the chicken and rice. The AI note thanks the neighbor for unspecified kindness with stacked abstractions like thoughtfulness and generosity. Gratitude from a real person points at particular acts."
+  },
+  {
+    "id": "slip-09",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Temporary branch location",
+    "payload": {
+      "intro": "An AI assistant summarized this local news brief:",
+      "source": "The Millbrook Public Library will close for renovations beginning March 3. The project is expected to finish in September, when the library will reopen with an expanded children's wing. During the closure, a temporary branch will operate out of the Fairview Community Center. The outdoor drop box will continue to accept returns.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "The library closes for renovations starting March 3.",
+        "It is expected to reopen in September with a bigger children's wing.",
+        "In the meantime, a temporary branch will run out of Millbrook High School.",
+        "The outdoor drop box stays open for returns."
+      ]
+    },
+    "answer": { "segmentIndex": 2 },
+    "explanation": "The temporary branch is at the Fairview Community Center, not the high school — the summary swapped in a plausible but wrong location. AI often substitutes a similar-sounding place or name that fits the story, so verify proper nouns against the source."
+  },
+  {
+    "id": "robot-09",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "House listing",
+    "payload": {
+      "intro": "One of these two home-listing descriptions was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nestled on a quiet, tree-lined street, this charming three-bedroom home offers the perfect blend of comfort, character, and convenience. The sun-drenched living spaces flow seamlessly into a beautifully updated kitchen, ideal for entertaining family and friends. Outside, the spacious backyard provides endless possibilities for relaxation and play. Located just minutes from shops, schools, and parks, this move-in-ready gem is an opportunity you will not want to miss!"
+        },
+        {
+          "id": "b",
+          "text": "Three-bedroom brick house we have owned for eleven years. The third bedroom is small — we used it as an office, and it fits a desk and one bookcase but not two (we tried). New water heater in 2024, roof in 2019, and the kitchen window gets the good afternoon light, which is where the previous owner's tomatoes did well and ours did not. Walkable to Fern Elementary; you can hear recess from the porch, which we always liked."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "The human listing admits the third bedroom is small and offers verifiable facts: water heater in 2024, roof in 2019, recess audible from the porch. The AI version hits the full bingo card — nestled, charming, seamlessly, sun-drenched — while telling you nothing measurable about the house. Real sellers mention drawbacks; marketing-speak with no numbers is the tell."
+  },
+  {
+    "id": "slip-10",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Rate direction flip",
+    "payload": {
+      "intro": "An AI assistant summarized this notice from a bank:",
+      "source": "Starting May 1, the interest rate on your Everyday Savings account will increase from 3.5% to 4.0%. To earn the new rate, keep a minimum balance of $500. There are no changes to your checking account. Also note that statements are now paperless by default; you can opt back into mailed statements anytime in settings.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "As of May 1, the savings rate is being cut from 4.0% to 3.5%.",
+        "A minimum balance of $500 is required to earn the advertised rate.",
+        "The checking account is unchanged.",
+        "Statements default to paperless, with a mail option available in settings."
+      ]
+    },
+    "answer": { "segmentIndex": 0 },
+    "explanation": "The rate is going up from 3.5% to 4.0%, but the summary reversed the direction using the very same numbers. Reusing correct figures in the wrong order is a sneaky AI failure — check not just the numbers but which way the change goes."
+  },
+  {
+    "id": "robot-10",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "Wedding toast opening",
+    "payload": {
+      "intro": "One of these two wedding-toast openings was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "For those who don't know me, I'm Sam — I lived with Kevin for three years and ate his leftovers for most of them, which he tracked on a whiteboard in the kitchen. So when he came home from his second date with Priya and voluntarily gave her the last slice of his own birthday cake, I knew this day was coming before he did. I even wrote it on the whiteboard. He has never paid up."
+        },
+        {
+          "id": "b",
+          "text": "Good evening, everyone. For those who don't know me, I have the incredible honor of standing here today to celebrate two amazing people. From the moment they met, it was clear that their love was something truly special. Tonight, we gather to celebrate love, laughter, and a lifetime of happiness together. So please, raise your glasses as we begin this wonderful evening honoring a couple who truly brings out the best in each other."
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human toast is built on one story only a roommate would know — the leftovers whiteboard and the birthday cake. The AI toast never names the couple and leans on the love-laughter-lifetime triad that fits any wedding on any continent. A toast that could be reused word-for-word at a stranger's wedding was not written by a friend."
+  },
+  {
+    "id": "slip-11",
+    "format": "spot_the_slip",
+    "difficulty": 2,
+    "title": "Yoga time flip",
+    "payload": {
+      "intro": "An AI assistant summarized this gym schedule update:",
+      "source": "Schedule update: starting next week, Monday yoga moves to 6 p.m. to avoid the after-work rush at the studio. Wednesday spin stays at its usual 7 a.m. slot. Please bring your own mat to yoga, as the loaner mats are being replaced. Members may bring a guest to their first class free of charge.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Wednesday spin keeps its usual 7 a.m. time.",
+        "Monday yoga is moving to 6 a.m.",
+        "Bring your own mat to yoga while the loaner mats are replaced.",
+        "Members can bring a guest to their first class for free."
+      ]
+    },
+    "answer": { "segmentIndex": 1 },
+    "explanation": "Yoga moves to 6 p.m., not 6 a.m. — the update even explains the evening time is meant to dodge the after-work rush. An a.m./p.m. flip is tiny on the page but twelve hours in real life, so always confirm times before adjusting your calendar."
+  },
+  {
+    "id": "robot-11",
+    "format": "real_or_robot",
+    "difficulty": 2,
+    "title": "Teacher bio",
+    "payload": {
+      "intro": "One of these two staff bios from a school website was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Marta Reyes has taught seventh-grade science at Lakeview Middle for eleven years. Her classroom is home to a hedgehog named Isaac Newton, who has survived two administrations' attempts to rehome him and one fire drill spent in her coat pocket. She runs the spring rocket unit that scorched the baseball outfield in 2022 — the district has forgiven her. Before teaching, she spent four years doing water-quality testing, which she brings up whenever anyone questions the field-trip budget."
+        },
+        {
+          "id": "b",
+          "text": "Marta Reyes is a passionate educator dedicated to fostering curiosity and a love of learning in every student. With over a decade of classroom experience, she is committed to creating an engaging, inclusive, and supportive environment where young minds can thrive. Marta believes that science is everywhere, and she strives to empower her students to explore, question, and discover the world around them. Outside the classroom, she enjoys spending time in nature and giving back to her community."
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "The human bio has a hedgehog named Isaac Newton and a scorched outfield — details too odd to invent and too specific to be generic. The AI bio strings together education buzzwords (fostering, empowering, thriving) and closes with hobbies vague enough for anyone. When a bio could describe every teacher in the district, a person did not write it."
+  },
+  {
+    "id": "slip-12",
+    "format": "spot_the_slip",
+    "difficulty": 3,
+    "title": "Invented reimbursement",
+    "payload": {
+      "intro": "An AI assistant summarized this company offsite email:",
+      "source": "Our fall offsite is Thursday, October 9, at Lakeside Lodge. The day includes a morning planning workshop and wraps up with a team dinner at 6 p.m. Transportation is not provided, so please arrange carpools with your teams. Dress is casual. Send any dietary restrictions to Alba by October 1.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "The fall offsite is October 9 at Lakeside Lodge.",
+        "The agenda includes a morning planning workshop and a 6 p.m. team dinner.",
+        "No transportation is provided, so teams should organize carpools.",
+        "Drivers will be reimbursed for mileage.",
+        "Dress is casual, and dietary restrictions go to Alba by October 1."
+      ]
+    },
+    "answer": { "segmentIndex": 3 },
+    "explanation": "Nothing in the email mentions mileage reimbursement — the summary invented a plausible perk out of thin air. This is the hardest kind of AI error to catch because every word sounds reasonable; the only test is whether the claim actually appears in the source."
+  },
+  {
+    "id": "robot-12",
+    "format": "real_or_robot",
+    "difficulty": 3,
+    "title": "Coffee shop review",
+    "payload": {
+      "intro": "One of these two coffee shop reviews was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stopped in on a rainy Tuesday and was impressed. The cortado was well made, the pastry case actually had things in it at 3 p.m., and the seating strikes a nice balance between laptop tables and armchairs. Prices are fair for the neighborhood. Whether you are grabbing a quick espresso on your commute or settling in for a long afternoon of work, this place delivers a consistently excellent experience. It has quickly become a beloved staple of the community."
+        },
+        {
+          "id": "b",
+          "text": "The cortado here is the best in the neighborhood, and I say that as someone who was loyal to Fig & Thistle for six years and feels a little guilty about switching. Go before 8:30 or after the school drop-off rush — the stroller wall from 8:45 to 9:15 is real. The owner remembers your order but not your name, which I respect. Day-old pastries are half price after 4; they just don't advertise it."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "Review A starts convincingly specific but slides into pure marketing at the end — the whether-you-are-X-or-Y formula and beloved staple of the community are classic AI closers. Review B carries insider knowledge you only get from going repeatedly: the stroller-wall window and the unadvertised pastry discount. When a text shifts from observation to brochure, suspect the machine."
+  },
+  {
+    "id": "slip-13",
+    "format": "spot_the_slip",
+    "difficulty": 3,
+    "title": "Tablespoons to teaspoons",
+    "payload": {
+      "intro": "An AI assistant summarized this lentil soup recipe:",
+      "source": "Heat 2 tablespoons of olive oil in a heavy pot and soften the onions. Add the lentils, tomatoes, and broth, then simmer uncovered for 45 minutes, stirring occasionally. The soup serves four as a main course. It freezes well for up to three months in airtight containers.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Start by softening onions in a heavy pot.",
+        "The recipe calls for 2 teaspoons of olive oil.",
+        "Simmer uncovered for 45 minutes, stirring now and then.",
+        "It serves four and freezes well for up to three months."
+      ]
+    },
+    "answer": { "segmentIndex": 1 },
+    "explanation": "The recipe uses 2 tablespoons of oil, but the summary quietly downgraded to teaspoons — a third of the amount, with the number itself unchanged. Unit swaps are among the subtlest AI errors because the digits look right; check the unit, not just the number."
+  },
+  {
+    "id": "robot-13",
+    "format": "real_or_robot",
+    "difficulty": 3,
+    "title": "Rental welcome note",
+    "payload": {
+      "intro": "One of these two welcome notes from a vacation-rental host was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Welcome! Wifi password is on the fridge under the pizza magnet. The back door sticks — pull the handle up while you turn the key; it opens on the second try, always the second try. Coffee is in the canister marked FLOUR (long story). If a heron is standing on the dock in the morning, that is Frank, and he is fine. Trash goes out Wednesday night or the raccoons hold a festival. Text me anytime — I answer fast except during my kid's swim practice, 4 to 5:30."
+        },
+        {
+          "id": "b",
+          "text": "Welcome to the lake house! The wifi password is posted on the refrigerator, and extra linens are in the hallway closet. Checkout is at 11 a.m. — just lock the door behind you. We have thoughtfully stocked the kitchen with everything you should need, from cookware to coffee. Whether you are here to unwind by the water or explore the charming town nearby, we hope your stay is nothing short of wonderful. Should you need anything at all, please do not hesitate to reach out."
+        }
+      ]
+    },
+    "answer": { "optionId": "a" },
+    "explanation": "Note B is competent and even includes practical details, but the tells are there: thoughtfully stocked, the whether-unwind-or-explore construction, and nothing a template could not produce. Note A is full of house-specific quirks — the sticky door trick, coffee in the FLOUR canister, a heron named Frank. The good AI fake gets logistics right but never the weirdness of a real house."
+  },
+  {
+    "id": "slip-14",
+    "format": "spot_the_slip",
+    "difficulty": 3,
+    "title": "Invented parking passes",
+    "payload": {
+      "intro": "An AI assistant summarized this city notice to residents:",
+      "source": "Elm Street will be repaved July 8 through 12. No street parking is allowed during work hours, 7 a.m. to 5 p.m. Driveways will be accessible each evening after crews finish for the day. If rain delays the work, the schedule will extend into the following week. Questions can go to the Public Works office.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Elm Street repaving runs July 8-12.",
+        "Street parking is banned during work hours, 7 a.m. to 5 p.m.",
+        "The city has arranged free daytime parking passes for a nearby lot.",
+        "Driveways will be usable in the evenings, and rain could push the work into the following week."
+      ]
+    },
+    "answer": { "segmentIndex": 2 },
+    "explanation": "The notice never mentions parking passes or a nearby lot — the summary added a helpful-sounding solution that does not exist. AI tends to fill gaps with what should logically come next; the fix is to ask, for each claim, where exactly it appears in the original."
+  },
+  {
+    "id": "robot-14",
+    "format": "real_or_robot",
+    "difficulty": 3,
+    "title": "Headphone review",
+    "payload": {
+      "intro": "One of these two headphone reviews was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "After two months of daily use, these headphones have mostly lived up to the hype. Battery life reliably hits about 28 hours, the noise cancellation handles office chatter well, and the companion app is straightforward. That said, the ear cushions run warm in summer, and the case is bulkier than some competitors'. Overall, a solid choice for anyone seeking dependable performance at this price point — they strike an impressive balance between comfort, sound quality, and value."
+        },
+        {
+          "id": "b",
+          "text": "Owned these for five months. The noise cancellation is good enough that I missed a fire alarm test, which HR was not thrilled about. Battery gets me through a full week of commutes. Two complaints: the left cup creaks when I chew — a thing I now know about myself — and the app made me create an account just to change the EQ, which I resent on principle. Buying a second pair for my wife anyway."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "Review A cites numbers and even a downside, but its shape gives it away: perfectly balanced pros then cons, a that-said hedge, and the a-solid-choice-for-anyone-seeking closer with a comfort-quality-value triad. Review B has consequences that happened to a specific person — the missed fire alarm, the creak while chewing. Structure that is too tidy is the tell when the content sounds plausible."
+  },
+  {
+    "id": "slip-15",
+    "format": "spot_the_slip",
+    "difficulty": 3,
+    "title": "Parking per day",
+    "payload": {
+      "intro": "An AI assistant summarized this hotel booking confirmation:",
+      "source": "Your reservation at the Harborview Inn is confirmed for three nights. Check-in begins at 3 p.m. and checkout is by 11 a.m. Breakfast for two guests is included each morning. Self-parking is available for $25 per day. You may cancel free of charge up to 48 hours before arrival.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "You are booked for three nights, with 3 p.m. check-in and 11 a.m. checkout.",
+        "Breakfast for two is included daily.",
+        "You can cancel for free up to 48 hours before arrival.",
+        "Self-parking is a flat $25 for the entire stay."
+      ]
+    },
+    "answer": { "segmentIndex": 3 },
+    "explanation": "Parking is $25 per day, not per stay — over three nights that is $75, three times what the summary implies. Per-day versus per-stay is a subtle wording change with a real cost attached, so slow down whenever a summary states a price."
+  },
+  {
+    "id": "robot-15",
+    "format": "real_or_robot",
+    "difficulty": 3,
+    "title": "Plumber recommendation",
+    "payload": {
+      "intro": "One of these two neighborhood-forum plumber recommendations was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Highly recommend Miller Plumbing. They answered on the first call, arrived right on time the next morning, and diagnosed the issue within minutes. The technician clearly explained the repair options and pricing before starting any work, and left the space spotless when finished. From scheduling to cleanup, the entire experience was seamless and stress-free. It is rare to find a service company that is this professional, punctual, and reasonably priced. They have earned a customer for life!"
+        },
+        {
+          "id": "b",
+          "text": "Gus from Miller Plumbing rebuilt the trap under our kitchen sink in about forty minutes and charged $140, which is $80 less than the quote I got from the big outfit with the billboard. Fair warning: he will tell you about his boat the entire time. It is called the Second Mortgage. The sink has been fine for a year now, and honestly I would have him back just for the updates on the boat."
+        }
+      ]
+    },
+    "answer": { "optionId": "b" },
+    "explanation": "Post A describes a flawless generic service arc — on time, spotless, seamless, professional-punctual-reasonable — without a name, a price, or a repair detail. Post B names Gus, the exact job, the exact price, and a boat called the Second Mortgage. Real recommendations come with receipts and irrelevant human detail; frictionless perfection is the machine's signature."
+  }
+]

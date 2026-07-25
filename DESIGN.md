@@ -2,11 +2,11 @@
 
 ## Brand Identity
 
-**Name:** Play with Prompts
-**Tagline:** Learn prompt engineering through practice
-**Tone:** Friendly, clear, encouraging. Speaks to non-technical people without dumbing things down. A smart friend teaching you something useful.
+**Name:** Catch the AI (playwithprompts.com)
+**Tagline:** One challenge a day. Spot what the AI got wrong.
+**Tone:** Friendly, clear, playful. Speaks to non-technical people without dumbing things down. A smart friend daring you to beat a puzzle.
 
-**Not:** Corporate, academic, gamified, or hype-driven. No XP points, no streaks, no badges. The learning itself is the reward.
+**Not:** Corporate, academic, or hype-driven. Streaks, scores, and percentiles ARE the product (v3 decision — the game mechanics carry the learning); XP-style decoration beyond those is still banned. No fabricated numbers, ever.
 
 ---
 
@@ -283,7 +283,7 @@ When implemented, certificates should:
 - No dark mode (keep it simple, add later if demand exists)
 - No custom fonts (system fonts are fast and readable)
 - No complex animations (content is the experience)
-- No gamification UI (no XP bars, no streak flames, no achievement badges)
+- No XP bars or achievement-badge walls (streaks, scores, and percentiles are allowed — they are the core loop; decorative gamification beyond them is not)
 - No gradient backgrounds on page sections (white and gray-50 only)
 - No decorative floating elements (no gradient circles, no blur blobs)
 
