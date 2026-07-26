@@ -32,8 +32,7 @@ import type {
   SubmitResult,
 } from '../src/types/catch';
 
-/** Round #1 is served on this date; index advances daily and cycles in dev. */
-export const EPOCH_DATE = '2026-07-25';
+import { EPOCH_DATE } from './config';
 
 const DATA_DIR = path.resolve(process.cwd(), '.local-data');
 const DB_PATH = path.join(DATA_DIR, 'catch-db.json');

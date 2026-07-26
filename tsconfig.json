@@ -15,9 +15,10 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "server", "tests"]
+  "include": ["src", "server", "tests", "api"]
 }

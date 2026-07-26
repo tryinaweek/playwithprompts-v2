@@ -5,3 +5,4 @@ dist
 .DS_Store
 prompt-tic-tac-toe/
 .local-data/
+.vercel

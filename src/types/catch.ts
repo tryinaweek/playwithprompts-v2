@@ -63,8 +63,10 @@ export interface SubmitResult {
   answer: ChallengeAnswer;
   playerAnswer: ChallengeAnswer;
   explanation: string;
-  percentile: PercentileInfo;
-  streak: StreakState;
+  /** Null while the shared database is not yet provisioned (degraded mode). */
+  percentile: PercentileInfo | null;
+  /** Null while the shared database is not yet provisioned (degraded mode). */
+  streak: StreakState | null;
   shareText: string;
 }
 

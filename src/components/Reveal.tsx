@@ -43,18 +43,20 @@ export function Reveal({ result }: { result: SubmitResult }) {
           {result.correct ? `You caught it! +${result.score} points` : 'The AI fooled you today'}
         </p>
         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-          {result.correct && (
+          {result.correct && result.percentile && (
             <span className="inline-flex items-center gap-1">
               <Trophy className="w-4 h-4 text-amber-500" />
               {result.percentile.rank === 1 ? 'Top score today' : `Top ${result.percentile.topPercent}%`}
               {result.percentile.betaCohort && ' (beta cohort)'}
             </span>
           )}
-          <span className="inline-flex items-center gap-1">
-            <Flame className="w-4 h-4 text-orange-500" />
-            {result.streak.currentStreak}-day streak
-            {result.streak.freezesAvailable > 0 && ` · ${result.streak.freezesAvailable} freeze${result.streak.freezesAvailable > 1 ? 's' : ''}`}
-          </span>
+          {result.streak && (
+            <span className="inline-flex items-center gap-1">
+              <Flame className="w-4 h-4 text-orange-500" />
+              {result.streak.currentStreak}-day streak
+              {result.streak.freezesAvailable > 0 && ` · ${result.streak.freezesAvailable} freeze${result.streak.freezesAvailable > 1 ? 's' : ''}`}
+            </span>
+          )}
         </div>
       </div>
 

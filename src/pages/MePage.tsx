@@ -143,7 +143,14 @@ export function MePage() {
           </div>
         )}
 
-        {/* Account */}
+        {/* Account — linking endpoint exists in local dev only for now */}
+        {!import.meta.env.DEV ? (
+          <div className="rounded-xl border border-gray-200 bg-white p-5 text-sm text-gray-600">
+            Your streak lives in this browser for now. Sign-in to sync it across devices is coming
+            soon.
+          </div>
+        ) : (
+          <>
         <h2 className="text-lg font-bold text-gray-900 mb-3">Save your streak</h2>
         {linkedEmail ? (
           <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-800">
@@ -186,6 +193,8 @@ export function MePage() {
               </button>
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
     </div>

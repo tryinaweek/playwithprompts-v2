@@ -15,49 +15,10 @@
         "Pets and smoking are not allowed, and there is parking for two cars."
       ]
     },
-    "answer": { "segmentIndex": 2 },
+    "answer": {
+      "segmentIndex": 2
+    },
     "explanation": "The listing says the beach is a ten-minute walk, but the summary stretched it to thirty. AI summaries most often slip on numbers, so always re-check any figure against the original before you rely on it."
-  },
-  {
-    "id": "robot-01",
-    "format": "real_or_robot",
-    "difficulty": 1,
-    "title": "Hotel review",
-    "payload": {
-      "intro": "One of these two hotel reviews was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
-      "options": [
-        {
-          "id": "a",
-          "text": "Nestled in the heart of downtown, this hotel offers the perfect blend of comfort, convenience, and charm. The rooms are spacious and inviting, the staff is friendly and attentive, and the amenities are truly top-notch. Whether you are traveling for business or pleasure, this property delivers a seamless experience from check-in to check-out. The vibrant location puts you steps away from dining, shopping, and entertainment. I would not hesitate to recommend it to anyone visiting the area."
-        },
-        {
-          "id": "b",
-          "text": "We stayed three nights in room 412, which faces the parking garage — ask for the other side if you are a light sleeper, because the garbage trucks come at 5. That said, the beds are genuinely great, and the woman at the front desk (Renata, I think) let us store bags until our 9 p.m. flight and drew us a map to a taco place that turned out to be the best meal of the trip. The elevator smells like the pool. Would stay again."
-        }
-      ]
-    },
-    "answer": { "optionId": "b" },
-    "explanation": "The human review names a room number, a front-desk employee, and a weird true detail about the elevator. The AI review is all adjectives in threes — comfort, convenience, and charm — with words like nestled, seamless, and vibrant but zero specifics. Concrete, checkable details are the strongest sign of a real reviewer."
-  },
-  {
-    "id": "slip-02",
-    "format": "spot_the_slip",
-    "difficulty": 1,
-    "title": "Cookie count",
-    "payload": {
-      "intro": "An AI assistant summarized this cookie recipe:",
-      "source": "This oatmeal cookie recipe makes 24 cookies. Cream the butter with brown sugar, then mix in the dry ingredients. Chill the dough for one hour before baking. Bake at 350 degrees for 12 minutes, until the edges are golden. Store in an airtight container for up to five days.",
-      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
-      "segments": [
-        "Chill the dough for an hour before you bake.",
-        "The recipe makes a dozen cookies.",
-        "Bake at 350 degrees for 12 minutes until the edges turn golden.",
-        "Finished cookies keep in an airtight container for up to five days."
-      ]
-    },
-    "answer": { "segmentIndex": 1 },
-    "explanation": "The recipe makes 24 cookies, but the summary cut it to a dozen. Quantities are one of the most common things AI gets wrong when condensing text — double-check yields and amounts before you shop or bake."
   },
   {
     "id": "robot-02",
@@ -78,8 +39,55 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human reply names a real place, a real coworker, and one oddly specific detail about a bridesmaid dress. The AI version never says where the person is, when they return, or who exactly to contact — it is polished but empty. When a message could apply to literally anyone, that is a robot tell."
+  },
+  {
+    "id": "slip-02",
+    "format": "spot_the_slip",
+    "difficulty": 1,
+    "title": "Cookie count",
+    "payload": {
+      "intro": "An AI assistant summarized this cookie recipe:",
+      "source": "This oatmeal cookie recipe makes 24 cookies. Cream the butter with brown sugar, then mix in the dry ingredients. Chill the dough for one hour before baking. Bake at 350 degrees for 12 minutes, until the edges are golden. Store in an airtight container for up to five days.",
+      "instruction": "Tap the sentence in the AI summary that gets the original wrong.",
+      "segments": [
+        "Chill the dough for an hour before you bake.",
+        "The recipe makes a dozen cookies.",
+        "Bake at 350 degrees for 12 minutes until the edges turn golden.",
+        "Finished cookies keep in an airtight container for up to five days."
+      ]
+    },
+    "answer": {
+      "segmentIndex": 1
+    },
+    "explanation": "The recipe makes 24 cookies, but the summary cut it to a dozen. Quantities are one of the most common things AI gets wrong when condensing text — double-check yields and amounts before you shop or bake."
+  },
+  {
+    "id": "robot-01",
+    "format": "real_or_robot",
+    "difficulty": 1,
+    "title": "Hotel review",
+    "payload": {
+      "intro": "One of these two hotel reviews was written by a person. The other is AI.",
+      "instruction": "Pick the one written by the human.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nestled in the heart of downtown, this hotel offers the perfect blend of comfort, convenience, and charm. The rooms are spacious and inviting, the staff is friendly and attentive, and the amenities are truly top-notch. Whether you are traveling for business or pleasure, this property delivers a seamless experience from check-in to check-out. The vibrant location puts you steps away from dining, shopping, and entertainment. I would not hesitate to recommend it to anyone visiting the area."
+        },
+        {
+          "id": "b",
+          "text": "We stayed three nights in room 412, which faces the parking garage — ask for the other side if you are a light sleeper, because the garbage trucks come at 5. That said, the beds are genuinely great, and the woman at the front desk (Renata, I think) let us store bags until our 9 p.m. flight and drew us a map to a taco place that turned out to be the best meal of the trip. The elevator smells like the pool. Would stay again."
+        }
+      ]
+    },
+    "answer": {
+      "optionId": "b"
+    },
+    "explanation": "The human review names a room number, a front-desk employee, and a weird true detail about the elevator. The AI review is all adjectives in threes — comfort, convenience, and charm — with words like nestled, seamless, and vibrant but zero specifics. Concrete, checkable details are the strongest sign of a real reviewer."
   },
   {
     "id": "slip-03",
@@ -97,7 +105,9 @@
         "RSVP to Priya by Friday for the headcount."
       ]
     },
-    "answer": { "segmentIndex": 0 },
+    "answer": {
+      "segmentIndex": 0
+    },
     "explanation": "The meeting moved to Thursday, not Friday — the summary grabbed the wrong day, possibly confusing it with the RSVP deadline. When a text contains several dates, AI often shuffles them, so match each date to the right event."
   },
   {
@@ -119,7 +129,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human review tells a specific story — a Minnesota winter, a cracked lid, a replacement in the mail — and admits a flaw about the handle. The AI review runs on triads (sleek, durable, impressive) and the classic whether-you-are-X-or-Y formula with no lived experience. Real reviewers describe what actually happened to them."
   },
   {
@@ -138,7 +150,9 @@
         "Note that the register is cash-only, so send exact change."
       ]
     },
-    "answer": { "segmentIndex": 3 },
+    "answer": {
+      "segmentIndex": 3
+    },
     "explanation": "The newsletter says both cash and card are accepted, but the summary claims cash-only and even invents advice about exact change. AI sometimes flips a fact and then confidently builds on the mistake — watch for follow-on advice that hangs off an error."
   },
   {
@@ -160,7 +174,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "The human post has everything a search actually needs: the cat's name, markings, last location, and the cheese-wrapper trick. The AI post never even describes the cat — it is warm, generic community talk with no usable detail. Missing basic facts that any real poster would include is a giveaway."
   },
   {
@@ -179,7 +195,9 @@
         "Billing questions go to billing@greenscape.example."
       ]
     },
-    "answer": { "segmentIndex": 0 },
+    "answer": {
+      "segmentIndex": 0
+    },
     "explanation": "The invoice totals $2,300, but the summary swapped the digits to $3,200. Transposed digits are a classic AI slip that looks perfectly plausible — always verify dollar amounts against the source document before paying or forwarding."
   },
   {
@@ -201,7 +219,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human headnote admits the cake is ugly and sinks every time — real recipe stories include flaws and oddly specific history like margarine from the A&P in 1987. The AI version is pure superlatives (delightful, decadent, crowd-pleasing) that could sit atop any recipe on earth. Imperfection plus specificity signals a real person."
   },
   {
@@ -220,7 +240,9 @@
         "You are in seat 14C on both flights."
       ]
     },
-    "answer": { "segmentIndex": 2 },
+    "answer": {
+      "segmentIndex": 2
+    },
     "explanation": "The fare already includes one checked bag, but the summary claims you would have to pay extra. Notice how the wrong claim is tucked onto the end of a correct one — AI errors often hide in the second half of an otherwise accurate sentence."
   },
   {
@@ -242,7 +264,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "The human explains exactly what went wrong (2:00 versus 12:00, entered on a train), owns it, and offers concrete times. The AI apology is all abstractions — valuable time, any inconvenience, patience and understanding — with no actual reason and no specific fix. A real apology contains the embarrassing details."
   },
   {
@@ -261,7 +285,9 @@
         "In the end, the reviewer says they would not recommend the phone to a friend."
       ]
     },
-    "answer": { "segmentIndex": 3 },
+    "answer": {
+      "segmentIndex": 3
+    },
     "explanation": "The reviewer explicitly says they would tell a friend to buy the phone tomorrow — the summary inverted the verdict, probably because the review listed several complaints. AI can mistake a list of criticisms for a negative conclusion, so always check the author's actual bottom line."
   },
   {
@@ -283,7 +309,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "The human letter opens with a small true scene and backs it with measurable facts: twelve-person clinic, four years, spending cut by a fifth. The AI letter leans on stock phrases — proven track record, fast-paced environment, ideal fit — and a tidy triad of skills that could describe any applicant. Specific accomplishments beat polished boilerplate."
   },
   {
@@ -302,7 +330,9 @@
         "Applications take up to three business days to process."
       ]
     },
-    "answer": { "segmentIndex": 1 },
+    "answer": {
+      "segmentIndex": 1
+    },
     "explanation": "The email says the tenant pays for electricity — only water and trash are included, but the summary lumped all three together. When AI summarizes lists with exceptions, it tends to smooth the exception away, so re-read any which-items-are-included details yourself."
   },
   {
@@ -324,7 +354,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human note names what was actually done — soup, shoveling, Pete's ankle — and includes a gently teasing detail about the chicken and rice. The AI note thanks the neighbor for unspecified kindness with stacked abstractions like thoughtfulness and generosity. Gratitude from a real person points at particular acts."
   },
   {
@@ -343,7 +375,9 @@
         "The outdoor drop box stays open for returns."
       ]
     },
-    "answer": { "segmentIndex": 2 },
+    "answer": {
+      "segmentIndex": 2
+    },
     "explanation": "The temporary branch is at the Fairview Community Center, not the high school — the summary swapped in a plausible but wrong location. AI often substitutes a similar-sounding place or name that fits the story, so verify proper nouns against the source."
   },
   {
@@ -365,7 +399,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "The human listing admits the third bedroom is small and offers verifiable facts: water heater in 2024, roof in 2019, recess audible from the porch. The AI version hits the full bingo card — nestled, charming, seamlessly, sun-drenched — while telling you nothing measurable about the house. Real sellers mention drawbacks; marketing-speak with no numbers is the tell."
   },
   {
@@ -384,7 +420,9 @@
         "Statements default to paperless, with a mail option available in settings."
       ]
     },
-    "answer": { "segmentIndex": 0 },
+    "answer": {
+      "segmentIndex": 0
+    },
     "explanation": "The rate is going up from 3.5% to 4.0%, but the summary reversed the direction using the very same numbers. Reusing correct figures in the wrong order is a sneaky AI failure — check not just the numbers but which way the change goes."
   },
   {
@@ -406,7 +444,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human toast is built on one story only a roommate would know — the leftovers whiteboard and the birthday cake. The AI toast never names the couple and leans on the love-laughter-lifetime triad that fits any wedding on any continent. A toast that could be reused word-for-word at a stranger's wedding was not written by a friend."
   },
   {
@@ -425,7 +465,9 @@
         "Members can bring a guest to their first class for free."
       ]
     },
-    "answer": { "segmentIndex": 1 },
+    "answer": {
+      "segmentIndex": 1
+    },
     "explanation": "Yoga moves to 6 p.m., not 6 a.m. — the update even explains the evening time is meant to dodge the after-work rush. An a.m./p.m. flip is tiny on the page but twelve hours in real life, so always confirm times before adjusting your calendar."
   },
   {
@@ -447,7 +489,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "The human bio has a hedgehog named Isaac Newton and a scorched outfield — details too odd to invent and too specific to be generic. The AI bio strings together education buzzwords (fostering, empowering, thriving) and closes with hobbies vague enough for anyone. When a bio could describe every teacher in the district, a person did not write it."
   },
   {
@@ -467,7 +511,9 @@
         "Dress is casual, and dietary restrictions go to Alba by October 1."
       ]
     },
-    "answer": { "segmentIndex": 3 },
+    "answer": {
+      "segmentIndex": 3
+    },
     "explanation": "Nothing in the email mentions mileage reimbursement — the summary invented a plausible perk out of thin air. This is the hardest kind of AI error to catch because every word sounds reasonable; the only test is whether the claim actually appears in the source."
   },
   {
@@ -489,7 +535,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "Review A starts convincingly specific but slides into pure marketing at the end — the whether-you-are-X-or-Y formula and beloved staple of the community are classic AI closers. Review B carries insider knowledge you only get from going repeatedly: the stroller-wall window and the unadvertised pastry discount. When a text shifts from observation to brochure, suspect the machine."
   },
   {
@@ -508,7 +556,9 @@
         "It serves four and freezes well for up to three months."
       ]
     },
-    "answer": { "segmentIndex": 1 },
+    "answer": {
+      "segmentIndex": 1
+    },
     "explanation": "The recipe uses 2 tablespoons of oil, but the summary quietly downgraded to teaspoons — a third of the amount, with the number itself unchanged. Unit swaps are among the subtlest AI errors because the digits look right; check the unit, not just the number."
   },
   {
@@ -530,7 +580,9 @@
         }
       ]
     },
-    "answer": { "optionId": "a" },
+    "answer": {
+      "optionId": "a"
+    },
     "explanation": "Note B is competent and even includes practical details, but the tells are there: thoughtfully stocked, the whether-unwind-or-explore construction, and nothing a template could not produce. Note A is full of house-specific quirks — the sticky door trick, coffee in the FLOUR canister, a heron named Frank. The good AI fake gets logistics right but never the weirdness of a real house."
   },
   {
@@ -549,7 +601,9 @@
         "Driveways will be usable in the evenings, and rain could push the work into the following week."
       ]
     },
-    "answer": { "segmentIndex": 2 },
+    "answer": {
+      "segmentIndex": 2
+    },
     "explanation": "The notice never mentions parking passes or a nearby lot — the summary added a helpful-sounding solution that does not exist. AI tends to fill gaps with what should logically come next; the fix is to ask, for each claim, where exactly it appears in the original."
   },
   {
@@ -571,7 +625,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "Review A cites numbers and even a downside, but its shape gives it away: perfectly balanced pros then cons, a that-said hedge, and the a-solid-choice-for-anyone-seeking closer with a comfort-quality-value triad. Review B has consequences that happened to a specific person — the missed fire alarm, the creak while chewing. Structure that is too tidy is the tell when the content sounds plausible."
   },
   {
@@ -590,7 +646,9 @@
         "Self-parking is a flat $25 for the entire stay."
       ]
     },
-    "answer": { "segmentIndex": 3 },
+    "answer": {
+      "segmentIndex": 3
+    },
     "explanation": "Parking is $25 per day, not per stay — over three nights that is $75, three times what the summary implies. Per-day versus per-stay is a subtle wording change with a real cost attached, so slow down whenever a summary states a price."
   },
   {
@@ -612,7 +670,9 @@
         }
       ]
     },
-    "answer": { "optionId": "b" },
+    "answer": {
+      "optionId": "b"
+    },
     "explanation": "Post A describes a flawless generic service arc — on time, spotless, seamless, professional-punctual-reasonable — without a name, a price, or a repair detail. Post B names Gus, the exact job, the exact price, and a boat called the Second Mortgage. Real recommendations come with receipts and irrelevant human detail; frictionless perfection is the machine's signature."
   }
 ]

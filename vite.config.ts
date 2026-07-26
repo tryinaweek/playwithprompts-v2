@@ -5,6 +5,10 @@ import path from 'path';
 import { catchApiPlugin } from './server/catch-api';
 
 export default defineConfig({
+  server: {
+    host: true,
+    allowedHosts: ['.trycloudflare.com'],
+  },
   plugins: [react(), catchApiPlugin()],
   resolve: {
     alias: {

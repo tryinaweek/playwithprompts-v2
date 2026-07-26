@@ -1,29 +1,30 @@
-# Catch the AI — production backend (not yet deployed)
+# Catch the AI — production backend
 
-The local dev API in [`server/catch-api.ts`](../server/catch-api.ts) is the source-of-truth
-contract; these artifacts mirror it for the shared Supabase project
-(`nbfkibomkxvqyaoakmma`). Everything here is **additive** — prefixed `catch_` /
-`catch-` — and touches nothing the live v1 site depends on.
+Production runs as **Vercel serverless functions** (`api/catch/*`) that bundle the
+challenges (answers never reach the client) and store plays/events in the shared
+Supabase project (`nbfkibomkxvqyaoakmma`) via PostgREST with the anon key.
 
-## Deploy steps (when moving off the local dev API)
+## The one setup step
 
-1. `supabase link --project-ref nbfkibomkxvqyaoakmma`
-2. Run `migrations/0001_catch_tables.sql` (via `supabase db push` or the SQL editor).
-3. Seed challenges: insert rows from `server/seed-challenges.json`, assigning
-   `scheduled_date` sequentially from launch day (the local API computes dates from
-   `EPOCH_DATE`; production stores them explicitly).
-4. `supabase functions deploy catch-daily catch-submit`
-5. Point the client at the functions: swap the fetch base in `src/lib/api.ts`
-   from `/api/catch/*` to `${SUPABASE_URL}/functions/v1/catch-*`.
+Run [`migrations/0001_launch.sql`](migrations/0001_launch.sql) once in the
+Supabase SQL editor:
 
-## Contract notes
+https://supabase.com/dashboard/project/nbfkibomkxvqyaoakmma/sql/new
 
-- Challenge answers/explanations are never exposed to clients pre-submission:
-  `catch_challenges` has RLS enabled with **no** client policies; only the
-  service-role edge functions read it.
-- One play per player per challenge is enforced by a unique constraint (the
-  409 path), not just the pre-check — safe under concurrent submits.
-- `catch-daily`'s `result` for already-played visitors is intentionally null in
-  this first production cut; the client keeps the local reveal state. A
-  `catch-result` read function (or extending catch-daily) is the follow-up when
-  cross-device replay of the reveal matters (post-auth linking).
+Paste the file, press Run. That's it.
+
+**Until this runs, the deployed game still works** in degraded mode: rounds are
+playable and scored, but percentiles ("Top 12%") and cross-player stats are
+hidden because there's no shared table to aggregate. The moment the SQL runs,
+the app upgrades itself — no redeploy needed.
+
+## Notes
+
+- Everything is additive (`catch_` prefix); nothing the live v1 site uses is touched.
+- Rows hold no personal data — `player_id` is a random UUID from the player's browser.
+- Known launch trade-off: the anon key can insert plays directly (bypassing the
+  scoring function), so a determined cheater could fake a score. Accepted per the
+  PRD anti-gaming stance; the hardening path is moving writes behind a
+  service-role key in Vercel env vars later.
+- The local dev server uses `server/catch-api.ts` (same API contract, JSON-file
+  storage) — no Supabase needed for development.
