@@ -7,7 +7,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "content:draft": "node scripts/draft-challenges.mjs",
+    "content:review": "node scripts/review-drafts.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
