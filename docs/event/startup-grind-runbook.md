@@ -1,6 +1,6 @@
 # Startup Grind (July 29) — Catch the AI live launch runbook
 
-**Live URL:** https://catch-the-ai-rouge.vercel.app
+**Live URL:** https://catch.playwithprompts.com
 **QR slide asset:** `docs/event/qr-catch-the-ai.png`
 **The round the room will get on the 29th:** #4 — "Real or Robot: hotel reviews" (two reviews, pick the human — a two-tap A/B built for a live crowd).
 
