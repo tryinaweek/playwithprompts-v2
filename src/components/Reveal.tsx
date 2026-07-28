@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Flame, Lightbulb, Share2, Trophy } from 'lucide-react';
 import { logEvent } from '@/lib/api';
+import { EmailCapture } from '@/components/EmailCapture';
 import { msUntilNextRound } from '@/lib/player';
 import type { SubmitResult } from '@/types/catch';
 
@@ -80,6 +81,13 @@ export function Reveal({ result }: { result: SubmitResult }) {
           Copy my result
         </button>
       </div>
+
+      {/* Come back tomorrow — asked at the moment they just felt the catch */}
+      <EmailCapture
+        source="reveal"
+        title="Don't miss tomorrow's round"
+        subtitle="Drop your email and I'll send you the daily challenge. Nothing else, ever."
+      />
 
       <div className="text-center text-sm text-gray-500 space-y-2 pt-2">
         <p>Next round in {countdown}</p>

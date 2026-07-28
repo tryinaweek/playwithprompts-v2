@@ -140,6 +140,41 @@ export async function insertEvent(type: string, playerId: string, meta: Record<s
   });
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+export function isValidEmail(value: unknown): value is string {
+  return typeof value === 'string' && value.length <= 254 && EMAIL_RE.test(value);
+}
+
+/**
+ * Store a subscriber. Writes to catch_subscribers; if that table isn't
+ * provisioned yet, falls back to catch_events so an address is never lost.
+ * Returns 'ok' | 'duplicate' | 'failed'.
+ */
+export async function insertSubscriber(
+  email: string,
+  playerId: string,
+  source: string
+): Promise<'ok' | 'duplicate' | 'failed'> {
+  const normalized = email.trim().toLowerCase();
+  const r = await rest('catch_subscribers', {
+    method: 'POST',
+    body: JSON.stringify({ email: normalized, player_id: playerId, source }),
+  });
+  if (r.ok) return 'ok';
+  if (r.status === 409 || r.errorCode === '23505') return 'duplicate';
+
+  const fallback = await rest('catch_events', {
+    method: 'POST',
+    body: JSON.stringify({
+      event_type: 'email_captured',
+      player_id: playerId,
+      meta: { email: normalized, source },
+    }),
+  });
+  return fallback.ok ? 'ok' : 'failed';
+}
+
 // ---------------------------------------------------------------------------
 // Derived state
 // ---------------------------------------------------------------------------

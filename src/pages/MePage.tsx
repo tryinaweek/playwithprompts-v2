@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { CheckCircle, Flame, Snowflake, Target, XCircle } from 'lucide-react';
 import { Header } from '@/components/Header';
+import { EmailCapture } from '@/components/EmailCapture';
 import { fetchProfile, linkAccount, logEvent } from '@/lib/api';
 import { setPlayerId } from '@/lib/player';
 import { supabase } from '@/lib/supabase';
@@ -145,13 +146,16 @@ export function MePage() {
 
         {/* Account — linking endpoint exists in local dev only for now */}
         {!import.meta.env.DEV ? (
-          <div className="rounded-xl border border-gray-200 bg-white p-5 text-sm text-gray-600">
-            Your streak lives in this browser for now. Sign-in to sync it across devices is coming
-            soon.
+          <div className="space-y-3">
+            <EmailCapture
+              source="stats"
+              title="Get the daily challenge by email"
+              subtitle="Your streak lives in this browser for now. Join the list and you'll never miss a round — and you'll be first when accounts arrive."
+            />
           </div>
         ) : (
           <>
-        <h2 className="text-lg font-bold text-gray-900 mb-3">Save your streak</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Save your streak (dev)</h2>
         {linkedEmail ? (
           <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-800">
             Signed in as {linkedEmail}. Your streak follows you across devices.

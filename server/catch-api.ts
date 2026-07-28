@@ -354,6 +354,35 @@ export function catchApiPlugin(): Plugin {
             return;
           }
 
+          if (route === '/api/catch/subscribe' && req.method === 'POST') {
+            let body: { email?: unknown; source?: unknown };
+            try {
+              body = JSON.parse(await readBody(req));
+            } catch {
+              fail(res, 400, 'invalid json');
+              return;
+            }
+            const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) {
+              fail(res, 400, "That doesn't look like an email");
+              return;
+            }
+            const already = db.events.some(
+              (e) => e.type === 'email_captured' && e.meta.email === email
+            );
+            if (!already) {
+              db.events.push({
+                type: 'email_captured',
+                playerId,
+                meta: { email, source: typeof body.source === 'string' ? body.source : 'unknown' },
+                createdAt: new Date().toISOString(),
+              });
+              saveDb(db);
+            }
+            json(res, 200, { ok: true, alreadySubscribed: already });
+            return;
+          }
+
           if (route === '/api/catch/link' && req.method === 'POST') {
             let body: { accessToken?: unknown };
             try {

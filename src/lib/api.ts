@@ -38,6 +38,16 @@ export function logEvent(type: 'round_started' | 'card_shared' | 'signup_complet
   });
 }
 
+export function subscribe(
+  email: string,
+  source: string
+): Promise<{ ok: boolean; alreadySubscribed: boolean }> {
+  return request<{ ok: boolean; alreadySubscribed: boolean }>('/api/catch/subscribe', {
+    method: 'POST',
+    body: JSON.stringify({ email, source }),
+  });
+}
+
 export function linkAccount(accessToken: string): Promise<{ playerId: string }> {
   return request<{ playerId: string }>('/api/catch/link', {
     method: 'POST',
