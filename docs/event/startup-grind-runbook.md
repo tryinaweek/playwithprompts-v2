@@ -6,11 +6,26 @@
 
 ## Before the event (checklist)
 
-- [ ] Run the one SQL file (2 min, works from a phone): open
+- [x] `supabase/migrations/0001_launch.sql` — DONE. Percentiles and streaks are live.
+- [ ] Run `supabase/migrations/0002_subscribers.sql` in the same SQL editor:
       https://supabase.com/dashboard/project/nbfkibomkxvqyaoakmma/sql/new
-      and paste `supabase/migrations/0001_launch.sql`, press Run.
-      This turns on live percentiles ("Top 12%") and streaks. The game works
-      without it, but the room stat is the magic moment — do this one.
+      This gives emails a dedicated table with real duplicate protection.
+      Without it addresses are still captured (they fall back into
+      `catch_events`), so this is a nice-to-have, not a blocker.
+- [ ] Optional cleanup of test rows:
+      `delete from catch_plays where player_id like 'fullmode-test%';`
+
+## Reading your email list after the event
+
+In the SQL editor:
+```sql
+select email, source, created_at from catch_subscribers order by created_at desc;
+-- plus any captured before 0002 ran:
+select meta->>'email' as email, created_at from catch_events
+where event_type = 'email_captured' order by created_at desc;
+```
+This list is the single most valuable thing you take home from the 29th —
+it is how these people hear from you on the 30th.
 - [ ] Test on your own phone the morning of: scan the QR, play the round.
 - [ ] Put the QR on your closing slide AND keep it up during Q&A.
 
@@ -27,8 +42,10 @@
 5. **The kicker:** "That was round 4. There's a new one every day — same
    challenge for everyone on Earth. Keep your streak alive longer than the
    person next to you."
-6. **Close:** "It's free, it's 90 seconds a day — playwithprompts.com becomes
-   this soon; for now the QR is the door."
+6. **Close:** "It's free, it's 90 seconds a day. Drop your email on the results
+   screen and I'll send you tomorrow's — that's the whole ask."
+   (The email box sits right under the share card, so point at it while the
+   room is still on that screen. This is what turns a room into a list.)
 
 ## After the talk
 
