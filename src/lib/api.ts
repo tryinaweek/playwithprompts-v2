@@ -48,8 +48,8 @@ export function subscribe(
   });
 }
 
-export function linkAccount(accessToken: string): Promise<{ playerId: string }> {
-  return request<{ playerId: string }>('/api/catch/link', {
+export function linkAccount(accessToken: string): Promise<{ playerId: string; adopted: number }> {
+  return request<{ playerId: string; adopted: number }>('/api/catch/link', {
     method: 'POST',
     body: JSON.stringify({ accessToken }),
   });

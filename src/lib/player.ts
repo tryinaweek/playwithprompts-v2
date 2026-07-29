@@ -13,6 +13,11 @@ export function setPlayerId(id: string): void {
   localStorage.setItem(PLAYER_ID_KEY, id);
 }
 
+/** Drop the current id so the next getPlayerId() mints a fresh anonymous one. */
+export function clearPlayerId(): void {
+  localStorage.removeItem(PLAYER_ID_KEY);
+}
+
 /** Local calendar date, YYYY-MM-DD — "today" follows the player's timezone. */
 export function localDate(now: Date = new Date()): string {
   const y = now.getFullYear();

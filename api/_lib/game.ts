@@ -140,6 +140,37 @@ export async function insertEvent(type: string, playerId: string, meta: Record<s
   });
 }
 
+/** Verify a Supabase access token; returns the account id + email, or null. */
+export async function resolveUser(accessToken: string): Promise<{ id: string; email: string } | null> {
+  try {
+    const resp = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${accessToken}` },
+    });
+    if (!resp.ok) return null;
+    const user = (await resp.json()) as { id?: string; email?: string };
+    return user.id ? { id: user.id, email: user.email ?? '' } : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Copy a device's anonymous plays onto the account so a streak survives
+ * sign-in and follows the player to any device. Duplicates are ignored, so
+ * re-linking the same device is harmless.
+ */
+export async function adoptPlays(anonPlayerId: string, userId: string): Promise<number> {
+  if (!anonPlayerId || anonPlayerId === userId) return 0;
+  const plays = await fetchPlayerPlays(anonPlayerId);
+  if (!plays || plays.length === 0) return 0;
+  let adopted = 0;
+  for (const p of plays) {
+    const outcome = await insertPlay({ ...p, player_id: userId });
+    if (outcome === 'ok') adopted++;
+  }
+  return adopted;
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function isValidEmail(value: unknown): value is string {

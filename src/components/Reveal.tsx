@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Flame, Lightbulb, Share2, Trophy } from 'lucide-react';
 import { logEvent } from '@/lib/api';
-import { EmailCapture } from '@/components/EmailCapture';
+import { AccountBox } from '@/components/AccountBox';
 import { msUntilNextRound } from '@/lib/player';
+import { useSession } from '@/lib/useSession';
 import type { SubmitResult } from '@/types/catch';
 
 function formatCountdown(ms: number): string {
@@ -15,6 +16,7 @@ function formatCountdown(ms: number): string {
 }
 
 export function Reveal({ result }: { result: SubmitResult }) {
+  const session = useSession();
   const [countdown, setCountdown] = useState(() => formatCountdown(msUntilNextRound()));
 
   useEffect(() => {
@@ -82,12 +84,13 @@ export function Reveal({ result }: { result: SubmitResult }) {
         </button>
       </div>
 
-      {/* Come back tomorrow — asked at the moment they just felt the catch */}
-      <EmailCapture
-        source="reveal"
-        title="Don't miss tomorrow's round"
-        subtitle="Drop your email and I'll send you the daily challenge. Nothing else, ever."
-      />
+      {/* Offered at the moment they just felt the catch — never before the round */}
+      {!session.loading && !session.email && (
+        <AccountBox
+          title="Keep this streak"
+          subtitle="Right now your streak only lives in this browser — clear it or switch phones and it's gone. Save it to a free account and it follows you anywhere."
+        />
+      )}
 
       <div className="text-center text-sm text-gray-500 space-y-2 pt-2">
         <p>Next round in {countdown}</p>

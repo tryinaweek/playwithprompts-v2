@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { CheckCircle, Flame, Snowflake, Target, XCircle } from 'lucide-react';
 import { Header } from '@/components/Header';
-import { EmailCapture } from '@/components/EmailCapture';
-import { fetchProfile, linkAccount, logEvent } from '@/lib/api';
-import { setPlayerId } from '@/lib/player';
+import { AccountBox } from '@/components/AccountBox';
+import { fetchProfile } from '@/lib/api';
+import { clearPlayerId } from '@/lib/player';
 import { supabase } from '@/lib/supabase';
+import { useSession } from '@/lib/useSession';
 
 const FORMAT_LABELS: Record<string, string> = {
   spot_the_slip: 'Spot the Slip',
@@ -15,37 +15,14 @@ const FORMAT_LABELS: Record<string, string> = {
 
 export function MePage() {
   const queryClient = useQueryClient();
+  const session = useSession();
   const { data: profile, isLoading } = useQuery({ queryKey: ['profile'], queryFn: fetchProfile });
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [authBusy, setAuthBusy] = useState(false);
-  const [linkedEmail, setLinkedEmail] = useState<string | null>(null);
 
-  const signIn = async (mode: 'in' | 'up') => {
-    if (!email || !password || authBusy) return;
-    setAuthBusy(true);
-    try {
-      const { data, error } =
-        mode === 'in'
-          ? await supabase.auth.signInWithPassword({ email, password })
-          : await supabase.auth.signUp({ email, password });
-      if (error) throw error;
-      const token = data.session?.access_token;
-      if (!token) {
-        toast.info('Check your email to confirm your account, then sign in here.');
-        return;
-      }
-      const { playerId } = await linkAccount(token);
-      setPlayerId(playerId);
-      setLinkedEmail(email);
-      logEvent('signup_completed');
-      toast.success('Streak saved to your account');
-      void queryClient.invalidateQueries();
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Sign-in failed');
-    } finally {
-      setAuthBusy(false);
-    }
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    clearPlayerId();
+    toast.success('Signed out — this browser is anonymous again');
+    void queryClient.invalidateQueries();
   };
 
   if (isLoading || !profile) {
@@ -69,30 +46,10 @@ export function MePage() {
         {/* Stat tiles */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {[
-            {
-              label: 'Streak',
-              value: `${profile.streak.currentStreak}`,
-              icon: Flame,
-              color: 'text-orange-500',
-            },
-            {
-              label: 'Longest',
-              value: `${profile.streak.longestStreak}`,
-              icon: Target,
-              color: 'text-purple-600',
-            },
-            {
-              label: 'Rounds',
-              value: `${profile.roundsPlayed}`,
-              icon: CheckCircle,
-              color: 'text-blue-600',
-            },
-            {
-              label: 'Accuracy',
-              value: `${profile.accuracy}%`,
-              icon: Target,
-              color: 'text-green-600',
-            },
+            { label: 'Streak', value: `${profile.streak.currentStreak}`, icon: Flame, color: 'text-orange-500' },
+            { label: 'Longest', value: `${profile.streak.longestStreak}`, icon: Target, color: 'text-purple-600' },
+            { label: 'Rounds', value: `${profile.roundsPlayed}`, icon: CheckCircle, color: 'text-blue-600' },
+            { label: 'Accuracy', value: `${profile.accuracy}%`, icon: Target, color: 'text-green-600' },
           ].map((tile, i) => (
             <div key={i} className="rounded-xl border border-gray-200 bg-white p-4 text-center">
               <tile.icon className={`w-5 h-5 mx-auto mb-1 ${tile.color}`} />
@@ -144,61 +101,26 @@ export function MePage() {
           </div>
         )}
 
-        {/* Account — linking endpoint exists in local dev only for now */}
-        {!import.meta.env.DEV ? (
-          <div className="space-y-3">
-            <EmailCapture
-              source="stats"
-              title="Get the daily challenge by email"
-              subtitle="Your streak lives in this browser for now. Join the list and you'll never miss a round — and you'll be first when accounts arrive."
-            />
-          </div>
-        ) : (
-          <>
-        <h2 className="text-lg font-bold text-gray-900 mb-3">Save your streak (dev)</h2>
-        {linkedEmail ? (
-          <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-800">
-            Signed in as {linkedEmail}. Your streak follows you across devices.
-          </div>
-        ) : (
-          <div className="rounded-xl border border-gray-200 bg-white p-5 space-y-3">
-            <p className="text-sm text-gray-600">
-              Playing anonymously works fine on this device. Sign in to keep your streak if you switch
-              phones.
+        {/* Account */}
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Your account</h2>
+        {session.email ? (
+          <div className="rounded-xl border border-green-200 bg-green-50 p-5 flex items-center justify-between gap-4">
+            <p className="text-sm text-green-800">
+              Signed in as <span className="font-medium">{session.email}</span>. Your streak follows
+              you to any device.
             </p>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-purple-400"
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-purple-400"
-            />
-            <div className="flex gap-2">
-              <button
-                onClick={() => signIn('in')}
-                disabled={authBusy}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 disabled:opacity-40"
-              >
-                Sign in
-              </button>
-              <button
-                onClick={() => signIn('up')}
-                disabled={authBusy}
-                className="flex-1 border border-gray-200 text-gray-700 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 disabled:opacity-40"
-              >
-                Create account
-              </button>
-            </div>
+            <button
+              onClick={signOut}
+              className="text-sm text-gray-600 hover:text-gray-900 underline flex-shrink-0"
+            >
+              Sign out
+            </button>
           </div>
-        )}
-          </>
+        ) : (
+          <AccountBox
+            title="Save your streak"
+            subtitle="Your streak lives in this browser only. Attach it to a free account and it survives a new phone, a cleared cache, or a different browser."
+          />
         )}
       </div>
     </div>

@@ -402,14 +402,21 @@ export function catchApiPlugin(): Plugin {
               return;
             }
             // Merge the anonymous record into the account-keyed record (first link wins).
+            let adopted = 0;
             if (playerId !== uid && db.players[playerId] && !db.players[uid]) {
+              adopted = Object.keys(db.players[playerId].plays).length;
               db.players[uid] = db.players[playerId];
               delete db.players[playerId];
             }
             getPlayer(db, uid);
-            db.events.push({ type: 'signup_completed', playerId: uid, meta: {}, createdAt: new Date().toISOString() });
+            db.events.push({
+              type: 'signup_completed',
+              playerId: uid,
+              meta: { adopted },
+              createdAt: new Date().toISOString(),
+            });
             saveDb(db);
-            json(res, 200, { playerId: uid });
+            json(res, 200, { playerId: uid, adopted });
             return;
           }
 

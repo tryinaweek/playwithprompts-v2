@@ -7,6 +7,14 @@ const NAV_ITEMS = [
   { to: '/me', label: 'My stats' },
 ];
 
+/**
+ * The original course site, kept one click away.
+ *
+ * Deliberately an inner path, not the apex: once playwithprompts.com/ redirects
+ * to this game, a link to the bare apex would bounce straight back here.
+ */
+const LEARN_URL = 'https://playwithprompts.com/courses';
+
 export function Header() {
   const location = useLocation();
 
@@ -38,6 +46,12 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <a
+            href={LEARN_URL}
+            className="px-3 sm:px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+          >
+            Learn
+          </a>
         </nav>
       </div>
     </header>
