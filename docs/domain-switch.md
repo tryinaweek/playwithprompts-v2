@@ -31,30 +31,58 @@ One-line change on my side once Step 1 is confirmed: `LEARN_URL` in
 (Until then the footer's "Courses" link still works, because the apex still
 serves the old site.)
 
-## Step 3 — Attach the apex to the game
+## Step 3 — Prove the domain is yours (TXT records)
 
-```bash
-vercel domains add playwithprompts.com
-vercel domains add www.playwithprompts.com
-```
+Both `playwithprompts.com` and `www.playwithprompts.com` are already registered
+to the project on my side; they're waiting on proof of ownership, because the
+apex is claimed by your other Vercel account.
 
-The `_vercel` TXT record you added for the subdomain should already cover this,
-so it ought to verify instantly. If Vercel asks for a new TXT value, add it in
-Cloudflare exactly as shown and re-run.
+In Cloudflare → DNS, add **two** TXT records. Cloudflare allows several records
+sharing the `_vercel` name, so leave the existing one alone.
 
-Then in Cloudflare DNS, point the apex at Vercel:
-- Apex `playwithprompts.com` → **A** → `76.76.21.21`, proxy **off** (grey cloud)
-- `www` → **CNAME** → `cname.vercel-dns.com`, proxy **off**
+| Type | Name    | Content |
+|------|---------|---------|
+| TXT  | `_vercel` | `vc-domain-verify=playwithprompts.com,b23612aa824e70188d86` |
+| TXT  | `_vercel` | `vc-domain-verify=www.playwithprompts.com,7d0456235cde260f3979` |
 
-SSL issues automatically within a few minutes.
+Then tell me — I run the verification from here and confirm.
 
-## Step 4 — Verify
+**Nothing changes for visitors at this step.** Traffic still goes wherever DNS
+points it, which is still the old site.
+
+## Step 4 — Flip the apex to the game
+
+Only after Steps 1 and 3 are done. In Cloudflare → DNS:
+
+- `playwithprompts.com` → **A** → `76.76.21.21` → proxy **off** (grey cloud)
+- `www` → **CNAME** → `cname.vercel-dns.com` → proxy **off**
+
+The grey cloud matters: Cloudflare's proxy interferes with Vercel's certificate
+issuing. SSL comes up automatically within a few minutes.
+
+## Step 5 — Verify
 
 - https://playwithprompts.com → the game
 - https://playwithprompts.com/prompts → the library
 - https://old.playwithprompts.com → the old course site
 - Sign in, then move between Play / Prompts / Stats — you stay signed in
 - catch.playwithprompts.com keeps working (same app, both addresses)
+
+---
+
+## The 2-minute alternative, if you'd rather not touch DNS
+
+A Cloudflare **Redirect Rule** gets the game in front of people today with no
+verification, no apex change, and nothing to roll back:
+
+- Rules → Redirect Rules → Create
+- When: `URI Path` **equals** `/`  ← equals, not "starts with"
+- Then: static redirect → `https://catch.playwithprompts.com` → **302**
+
+Someone typing playwithprompts.com lands in the game; every other old URL keeps
+working untouched. The only difference from the full switch is the address bar
+reads catch.playwithprompts.com afterwards. Fully reversible by disabling the
+rule.
 
 ## Rollback
 
