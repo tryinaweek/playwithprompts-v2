@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import { PlayPage } from './pages/PlayPage';
 import { HowPage } from './pages/HowPage';
 import { MePage } from './pages/MePage';
+import { PromptsPage } from './pages/PromptsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ export function App() {
           <Route path="/" element={<PlayPage />} />
           <Route path="/how" element={<HowPage />} />
           <Route path="/me" element={<MePage />} />
+          <Route path="/prompts" element={<PromptsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

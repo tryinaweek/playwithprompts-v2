@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Flame, Lightbulb, Target, Timer } from 'lucide-react';
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 export function HowPage() {
   return (
@@ -63,6 +64,8 @@ export function HowPage() {
           </Link>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

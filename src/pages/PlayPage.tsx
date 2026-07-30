@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { Play, Timer } from 'lucide-react';
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { SpotTheSlip } from '@/components/SpotTheSlip';
 import { RealOrRobot } from '@/components/RealOrRobot';
 import { Reveal } from '@/components/Reveal';
@@ -168,6 +169,8 @@ export function PlayPage() {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 }

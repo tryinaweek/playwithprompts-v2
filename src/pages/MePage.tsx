@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { CheckCircle, Flame, Snowflake, Target, XCircle } from 'lucide-react';
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { AccountBox } from '@/components/AccountBox';
 import { fetchProfile } from '@/lib/api';
 import { clearPlayerId } from '@/lib/player';
@@ -123,6 +124,8 @@ export function MePage() {
           />
         )}
       </div>
+
+      <Footer />
     </div>
   );
 }
