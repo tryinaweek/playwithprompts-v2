@@ -9,16 +9,34 @@ Do the steps in order. Nothing is destroyed at any point.
 
 ---
 
+## The values, confirmed from the live DNS (2026-07-30)
+
+**Old site origin: `185.158.133.1`** — this is the apex A record's target, sitting
+behind Cloudflare's proxy. It is both the value the `old` record needs and the
+**rollback value** for the apex.
+
+Current records on the zone:
+
+| Name | Type | Content | Proxy |
+|------|------|---------|-------|
+| `catch` | A | 76.76.21.21 | DNS only ← the game, working |
+| apex | A | 185.158.133.1 | Proxied ← old site |
+| `www` | A | 185.158.133.1 | Proxied ← old site |
+| `send` | MX / TXT | amazonses | DNS only ← email, do not touch |
+| `default._domainkey`, `resend._domainkey`, `_dmarc` | TXT | — | email auth, do not touch |
+| `_vercel` | TXT | vc-domain-verify=catch… | keep, and add two more |
+
+Nothing in the email rows (`send`, `_dmarc`, `*._domainkey`) is affected by any
+step here — leave them alone.
+
 ## Step 1 — Give the old site its own address first
 
 Do this **before** anything else, so nothing is ever unreachable.
 
-1. Cloudflare → playwithprompts.com → **DNS**.
-2. Find the existing record for the apex (`playwithprompts.com`). Note its
-   type and target — that target is the old site's origin.
-3. Add a new record with the **same type and same target**, named `old`.
-   Keep the proxy setting identical to the apex record.
-4. Check https://old.playwithprompts.com loads the current course site.
+1. Cloudflare → playwithprompts.com → **DNS** → **Add record**:
+   - Type **A**, Name `old`, Content **185.158.133.1**, Proxy **Proxied**
+     (matching the apex row exactly)
+2. Check https://old.playwithprompts.com loads the current course site.
 
 Once that works, the old site has a permanent home and the apex is free.
 
