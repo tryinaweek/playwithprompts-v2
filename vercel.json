@@ -1,4 +1,15 @@
 {
+  "redirects": [
+    { "source": "/courses", "destination": "https://www.playwithprompts.com/courses", "permanent": false },
+    { "source": "/courses/:path*", "destination": "https://www.playwithprompts.com/courses/:path*", "permanent": false },
+    { "source": "/learn", "destination": "https://www.playwithprompts.com/learn", "permanent": false },
+    { "source": "/learn/:path*", "destination": "https://www.playwithprompts.com/learn/:path*", "permanent": false },
+    { "source": "/daily-ai-tip", "destination": "https://www.playwithprompts.com/daily-ai-tip", "permanent": false },
+    { "source": "/saved-tips", "destination": "https://www.playwithprompts.com/saved-tips", "permanent": false },
+    { "source": "/games", "destination": "https://www.playwithprompts.com/games", "permanent": false },
+    { "source": "/dashboard", "destination": "https://www.playwithprompts.com/dashboard", "permanent": false },
+    { "source": "/verify/:path*", "destination": "https://www.playwithprompts.com/verify/:path*", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

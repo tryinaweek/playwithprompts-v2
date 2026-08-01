@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 /**
- * The original course site.
+ * The original course site, which now lives on the www hostname.
  *
- * Deliberately an inner path, not the bare apex: once playwithprompts.com/
- * serves this game, a link to the apex would bounce straight back here.
- * When the old site is parked at old.playwithprompts.com, point this there.
+ * The apex serves this game; www still points at the old origin (185.158.133.1),
+ * which already had www configured. Must NOT be the apex or an apex path —
+ * those resolve to this app and would 404.
  */
-export const LEARN_URL = 'https://playwithprompts.com/courses';
+export const LEARN_URL = 'https://www.playwithprompts.com/courses';
 
 export function Footer() {
   return (
