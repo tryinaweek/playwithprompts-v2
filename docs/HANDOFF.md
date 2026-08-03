@@ -45,6 +45,20 @@ stripe-subscription-webhook) — harmless, nothing calls them. The extra
 `_vercel` TXT (www…,7910289f…) can be deleted post-verification per Vercel,
 but leaving it is fine.
 
+## Workshops system — live 2026-08-03, two pastes pending
+
+rameshnuti.com is multi-workshop: admin at /admin (create workshop → upload →
+copy visitor link), visitor pages /workshops/<slug> (email unlock, per-slug
+cookie, source tag workshop-<slug> into THE LIST) and
+/workshops/<slug>/resources (that workshop's files only; any filename works).
+Downloads route via /api/download → logs to Supabase workshop_downloads →
+302 to Blob. Legacy /workshop/resources 307s to ai-agent-workshop; old files
+migrated into workshop/ai-agent-workshop/. Registry: blob
+workshop/_registry.json. Counts show "—" until Ramesh: (1) runs
+supabase/migrations/0004_workshop_downloads.sql in the SQL editor,
+(2) adds SUPABASE_SERVICE_ROLE_KEY env var to rameshnuti-v2 in Vercel +
+redeploys.
+
 ## Open items — Ramesh
 
 1. Send sponsor email #1 (drafts: `docs/sponsor-emails.md`); name sponsor price.
