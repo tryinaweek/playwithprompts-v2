@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { Dumbbell, Lightbulb } from 'lucide-react';
+import { Dumbbell, Lightbulb, Share2 } from 'lucide-react';
 import { RoundTimer } from '@/components/RoundTimer';
 import { SpotTheSlip } from '@/components/SpotTheSlip';
 import { RealOrRobot } from '@/components/RealOrRobot';
@@ -76,6 +76,24 @@ export function PracticeMode({ onExit }: { onExit: () => void }) {
     return stopTimer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const shareSession = async () => {
+    const text = `Catch the AI practice 🎯 caught ${tally.correct} of ${tally.played} today\nplaywithprompts.com`;
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ text });
+        return;
+      } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success('Result copied — paste it anywhere');
+    } catch {
+      toast.error('Could not copy');
+    }
+  };
 
   const submit = async () => {
     if (!challenge || !selected || submitting) return;
@@ -197,6 +215,13 @@ export function PracticeMode({ onExit }: { onExit: () => void }) {
             >
               Next practice round
               {remaining !== null ? ` (${remaining} left today)` : ''}
+            </button>
+            <button
+              onClick={() => void shareSession()}
+              className="px-6 py-3 rounded-xl font-medium text-purple-700 border border-purple-200 bg-purple-50 hover:bg-purple-100 transition-colors inline-flex items-center justify-center gap-2"
+            >
+              <Share2 className="w-4 h-4" />
+              Share
             </button>
             <button
               onClick={onExit}

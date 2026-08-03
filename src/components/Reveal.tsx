@@ -24,14 +24,28 @@ export function Reveal({ result }: { result: SubmitResult }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Native OS share sheet where available (one tap into WhatsApp/X/Messages —
+  // no login on our side); clipboard as the desktop fallback.
+  const canNativeShare =
+    typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+
   const share = async () => {
+    logEvent('card_shared');
+    if (canNativeShare) {
+      try {
+        await navigator.share({ text: result.shareText });
+        return;
+      } catch (err) {
+        // User dismissed the sheet, or share failed — fall through to copy.
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
+    }
     try {
       await navigator.clipboard.writeText(result.shareText);
       toast.success('Result copied — paste it anywhere');
     } catch {
       toast.error('Could not copy — long-press the card text to copy it');
     }
-    logEvent('card_shared');
   };
 
   return (
@@ -80,7 +94,7 @@ export function Reveal({ result }: { result: SubmitResult }) {
           className="w-full md:w-auto bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all flex items-center justify-center gap-2"
         >
           <Share2 className="w-4 h-4" />
-          Copy my result
+          {canNativeShare ? 'Share my result' : 'Copy my result'}
         </button>
       </div>
 
