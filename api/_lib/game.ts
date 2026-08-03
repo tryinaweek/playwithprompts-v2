@@ -178,8 +178,9 @@ export function isValidEmail(value: unknown): value is string {
 }
 
 /**
- * Store a subscriber. Writes to catch_subscribers; if that table isn't
- * provisioned yet, falls back to catch_events so an address is never lost.
+ * Store a subscriber in THE LIST (public.people — the brand-wide table).
+ * Falls back to the game's own tables if people isn't provisioned yet, and to
+ * catch_events as a last resort, so an address is never lost.
  * Returns 'ok' | 'duplicate' | 'failed'.
  */
 export async function insertSubscriber(
@@ -188,12 +189,20 @@ export async function insertSubscriber(
   source: string
 ): Promise<'ok' | 'duplicate' | 'failed'> {
   const normalized = email.trim().toLowerCase();
-  const r = await rest('catch_subscribers', {
+
+  const master = await rest('people', {
+    method: 'POST',
+    body: JSON.stringify({ email: normalized, source: `game-${source}`, notes: `player:${playerId}` }),
+  });
+  if (master.ok) return 'ok';
+  if (master.status === 409 || master.errorCode === '23505') return 'duplicate';
+
+  const legacy = await rest('catch_subscribers', {
     method: 'POST',
     body: JSON.stringify({ email: normalized, player_id: playerId, source }),
   });
-  if (r.ok) return 'ok';
-  if (r.status === 409 || r.errorCode === '23505') return 'duplicate';
+  if (legacy.ok) return 'ok';
+  if (legacy.status === 409 || legacy.errorCode === '23505') return 'duplicate';
 
   const fallback = await rest('catch_events', {
     method: 'POST',
