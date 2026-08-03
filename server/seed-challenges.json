@@ -27,7 +27,7 @@
     "title": "Out-of-office reply",
     "payload": {
       "intro": "One of these two out-of-office replies was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -40,7 +40,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human reply names a real place, a real coworker, and one oddly specific detail about a bridesmaid dress. The AI version never says where the person is, when they return, or who exactly to contact — it is polished but empty. When a message could apply to literally anyone, that is a robot tell."
   },
@@ -72,7 +72,7 @@
     "title": "Hotel review",
     "payload": {
       "intro": "One of these two hotel reviews was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -85,7 +85,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "The human review names a room number, a front-desk employee, and a weird true detail about the elevator. The AI review is all adjectives in threes — comfort, convenience, and charm — with words like nestled, seamless, and vibrant but zero specifics. Concrete, checkable details are the strongest sign of a real reviewer."
   },
@@ -117,7 +117,7 @@
     "title": "Travel mug review",
     "payload": {
       "intro": "One of these two product reviews was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -130,7 +130,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human review tells a specific story — a Minnesota winter, a cracked lid, a replacement in the mail — and admits a flaw about the handle. The AI review runs on triads (sleek, durable, impressive) and the classic whether-you-are-X-or-Y formula with no lived experience. Real reviewers describe what actually happened to them."
   },
@@ -162,7 +162,7 @@
     "title": "Lost cat post",
     "payload": {
       "intro": "One of these two neighborhood-forum posts about a lost cat was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -175,7 +175,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "The human post has everything a search actually needs: the cat's name, markings, last location, and the cheese-wrapper trick. The AI post never even describes the cat — it is warm, generic community talk with no usable detail. Missing basic facts that any real poster would include is a giveaway."
   },
@@ -207,7 +207,7 @@
     "title": "Recipe headnote",
     "payload": {
       "intro": "One of these two recipe introductions was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -220,7 +220,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human headnote admits the cake is ugly and sinks every time — real recipe stories include flaws and oddly specific history like margarine from the A&P in 1987. The AI version is pure superlatives (delightful, decadent, crowd-pleasing) that could sit atop any recipe on earth. Imperfection plus specificity signals a real person."
   },
@@ -252,7 +252,7 @@
     "title": "Missed-meeting apology",
     "payload": {
       "intro": "One of these two apology emails for a missed meeting was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -265,7 +265,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "The human explains exactly what went wrong (2:00 versus 12:00, entered on a train), owns it, and offers concrete times. The AI apology is all abstractions — valuable time, any inconvenience, patience and understanding — with no actual reason and no specific fix. A real apology contains the embarrassing details."
   },
@@ -297,7 +297,7 @@
     "title": "Cover-letter opening",
     "payload": {
       "intro": "One of these two cover-letter openings was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -310,7 +310,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "The human letter opens with a small true scene and backs it with measurable facts: twelve-person clinic, four years, spending cut by a fifth. The AI letter leans on stock phrases — proven track record, fast-paced environment, ideal fit — and a tidy triad of skills that could describe any applicant. Specific accomplishments beat polished boilerplate."
   },
@@ -342,7 +342,7 @@
     "title": "Thank-you note",
     "payload": {
       "intro": "One of these two thank-you notes to a neighbor was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -355,7 +355,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human note names what was actually done — soup, shoveling, Pete's ankle — and includes a gently teasing detail about the chicken and rice. The AI note thanks the neighbor for unspecified kindness with stacked abstractions like thoughtfulness and generosity. Gratitude from a real person points at particular acts."
   },
@@ -387,7 +387,7 @@
     "title": "House listing",
     "payload": {
       "intro": "One of these two home-listing descriptions was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -400,7 +400,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "The human listing admits the third bedroom is small and offers verifiable facts: water heater in 2024, roof in 2019, recess audible from the porch. The AI version hits the full bingo card — nestled, charming, seamlessly, sun-drenched — while telling you nothing measurable about the house. Real sellers mention drawbacks; marketing-speak with no numbers is the tell."
   },
@@ -432,7 +432,7 @@
     "title": "Wedding toast opening",
     "payload": {
       "intro": "One of these two wedding-toast openings was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -445,7 +445,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human toast is built on one story only a roommate would know — the leftovers whiteboard and the birthday cake. The AI toast never names the couple and leans on the love-laughter-lifetime triad that fits any wedding on any continent. A toast that could be reused word-for-word at a stranger's wedding was not written by a friend."
   },
@@ -477,7 +477,7 @@
     "title": "Teacher bio",
     "payload": {
       "intro": "One of these two staff bios from a school website was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -490,7 +490,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "The human bio has a hedgehog named Isaac Newton and a scorched outfield — details too odd to invent and too specific to be generic. The AI bio strings together education buzzwords (fostering, empowering, thriving) and closes with hobbies vague enough for anyone. When a bio could describe every teacher in the district, a person did not write it."
   },
@@ -523,7 +523,7 @@
     "title": "Coffee shop review",
     "payload": {
       "intro": "One of these two coffee shop reviews was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -536,7 +536,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "Review A starts convincingly specific but slides into pure marketing at the end — the whether-you-are-X-or-Y formula and beloved staple of the community are classic AI closers. Review B carries insider knowledge you only get from going repeatedly: the stroller-wall window and the unadvertised pastry discount. When a text shifts from observation to brochure, suspect the machine."
   },
@@ -568,7 +568,7 @@
     "title": "Rental welcome note",
     "payload": {
       "intro": "One of these two welcome notes from a vacation-rental host was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -581,7 +581,7 @@
       ]
     },
     "answer": {
-      "optionId": "a"
+      "optionId": "b"
     },
     "explanation": "Note B is competent and even includes practical details, but the tells are there: thoughtfully stocked, the whether-unwind-or-explore construction, and nothing a template could not produce. Note A is full of house-specific quirks — the sticky door trick, coffee in the FLOUR canister, a heron named Frank. The good AI fake gets logistics right but never the weirdness of a real house."
   },
@@ -613,7 +613,7 @@
     "title": "Headphone review",
     "payload": {
       "intro": "One of these two headphone reviews was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -626,7 +626,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "Review A cites numbers and even a downside, but its shape gives it away: perfectly balanced pros then cons, a that-said hedge, and the a-solid-choice-for-anyone-seeking closer with a comfort-quality-value triad. Review B has consequences that happened to a specific person — the missed fire alarm, the creak while chewing. Structure that is too tidy is the tell when the content sounds plausible."
   },
@@ -658,7 +658,7 @@
     "title": "Plumber recommendation",
     "payload": {
       "intro": "One of these two neighborhood-forum plumber recommendations was written by a person. The other is AI.",
-      "instruction": "Pick the one written by the human.",
+      "instruction": "Tap the one written by the AI.",
       "options": [
         {
           "id": "a",
@@ -671,7 +671,7 @@
       ]
     },
     "answer": {
-      "optionId": "b"
+      "optionId": "a"
     },
     "explanation": "Post A describes a flawless generic service arc — on time, spotless, seamless, professional-punctual-reasonable — without a name, a price, or a repair detail. Post B names Gus, the exact job, the exact price, and a boat called the Second Mortgage. Real recommendations come with receipts and irrelevant human detail; frictionless perfection is the machine's signature."
   }

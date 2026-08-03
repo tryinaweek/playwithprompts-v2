@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { Dumbbell, Lightbulb, Timer } from 'lucide-react';
+import { Dumbbell, Lightbulb } from 'lucide-react';
+import { RoundTimer } from '@/components/RoundTimer';
 import { SpotTheSlip } from '@/components/SpotTheSlip';
 import { RealOrRobot } from '@/components/RealOrRobot';
 import { fetchPracticeRound, submitPracticeAnswer } from '@/lib/api';
@@ -137,16 +138,7 @@ export function PracticeMode({ onExit }: { onExit: () => void }) {
             )}
           </p>
         </div>
-        {!result && (
-          <div
-            className={`flex items-center gap-1.5 text-sm font-medium ${
-              secondsLeft > 15 ? 'text-gray-600' : 'text-red-600'
-            }`}
-          >
-            <Timer className="w-4 h-4" />
-            {secondsLeft > 0 ? `${secondsLeft}s` : 'no speed bonus'}
-          </div>
-        )}
+        {!result && <RoundTimer secondsLeft={secondsLeft} />}
       </div>
 
       {challenge.format === 'spot_the_slip' ? (

@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Dumbbell, Play, Timer } from 'lucide-react';
+import { Dumbbell, Play } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SpotTheSlip } from '@/components/SpotTheSlip';
 import { RealOrRobot } from '@/components/RealOrRobot';
 import { Reveal } from '@/components/Reveal';
 import { PracticeMode } from '@/components/PracticeMode';
+import { RoundTimer } from '@/components/RoundTimer';
 import { fetchDaily, logEvent, submitAnswer } from '@/lib/api';
 import { ROUND_TIME_LIMIT_SECONDS } from '@/game/logic';
 import type { ChallengeAnswer, RealOrRobotPayload, SpotTheSlipPayload, SubmitResult } from '@/types/catch';
@@ -115,16 +116,7 @@ export function PlayPage() {
               {'○'.repeat(3 - challenge.difficulty)} difficulty
             </p>
           </div>
-          {started && !activeResult && (
-            <div
-              className={`flex items-center gap-1.5 text-sm font-medium ${
-                secondsLeft > 15 ? 'text-gray-600' : 'text-red-600'
-              }`}
-            >
-              <Timer className="w-4 h-4" />
-              {secondsLeft > 0 ? `${secondsLeft}s` : 'no speed bonus'}
-            </div>
-          )}
+          {started && !activeResult && <RoundTimer secondsLeft={secondsLeft} />}
         </div>
 
         {/* Intro gate — timer starts when the player is ready */}
