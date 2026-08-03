@@ -9,8 +9,14 @@ Last updated: 2026-08-03
 
 - **playwithprompts.com** (apex, Vercel `catch-the-ai`, team inaweeks-projects)
   = Catch the AI game + /prompts library (63 prompts). Google + email auth,
-  streaks, percentiles. Old course site still at **www.**playwithprompts.com;
-  old paths (/courses, /learn, /verify/*) redirect there via vercel.json.
+  streaks, percentiles. Header is now the brand bar (Play with Prompts ·
+  Play/Prompts/Stats/Courses); catch.playwithprompts.com 308s to apex
+  (2026-08-03, verified live). Old course site still at
+  **www.**playwithprompts.com — origin is STILL Lovable (185.158.133.1 behind
+  Cloudflare, no x-vercel headers), NOT Vercel; stale `prompt-tic-tac-toe`
+  Vercel project could take over www after fresh deploy + DNS flip (pending
+  Ramesh's go). Old paths (/courses, /learn, /verify/*) redirect to www via
+  vercel.json.
 - **rameshnuti.com** (Vercel `rameshnuti-v2`, deploys on push to main) =
   action-bar header (☰ Menu + Work with me), /work-with-me money page, /lab
   portfolio (5 verified apps; more entries welcome in `src/data/lab.ts`),
