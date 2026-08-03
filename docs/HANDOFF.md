@@ -33,8 +33,13 @@ Last updated: 2026-08-03
 
 ## Build queue — next sessions, in order
 
-1. **/articles on rameshnuti.com** — canonical long-form home (needs his best
-   3–5 Substack links, or pull from public feed).
+1. **/articles on rameshnuti.com** — BUILT 2026-08-03 on `feature/articles`
+   branch in rameshnuti-v2 (not merged — needs Ramesh's UI approval, then
+   `git checkout main && git merge feature/articles && git push` to deploy).
+   Pulls all 8 posts from the startupvalue.substack.com public feed (live
+   fetch + seed fallback, 6h revalidate) + the on-site article. Nav/footer
+   "Writing" → "Articles". /writing still live. Preview: `npm run dev` in
+   rameshnuti-v2 → localhost:3000/articles.
 2. **Workshop page finish** (blocked on price).
 3. **PWP Phase 1 product plan** — daily-3 home, tips, founder's face; then
    photo rounds ("Real or Robot: photo edition") with HIS photos only.
