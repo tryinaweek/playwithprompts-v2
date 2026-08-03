@@ -9,7 +9,9 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "content:draft": "node scripts/draft-challenges.mjs",
-    "content:review": "node scripts/review-drafts.mjs"
+    "content:review": "node scripts/review-drafts.mjs",
+    "bank:generate": "node scripts/generate-challenges.mjs",
+    "bank:verify": "node scripts/verify-challenges.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
