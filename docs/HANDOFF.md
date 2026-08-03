@@ -28,6 +28,21 @@ Last updated: 2026-08-03
   playwithprompts repo (drafting needs `claude` CLI re-login — expired).
   Challenge bank: 30, fresh through ~Aug 24, then recycles.
 
+## www cutover — ready, needs 2 clicks from Ramesh (2026-08-03)
+
+Old course site: Stripe paywall REMOVED (no paid subs existed — confirmed),
+all courses free, nav stitched (Catch the AI ↔ Playground). Repo
+`prompt-tic-tac-toe/` (= github tryinaweek/playwithprompts) deployed fresh to
+Vercel project `prompt-tic-tac-toe`; all routes verified 200. Live www is an
+OLDER snapshot than the repo (old title), still on Lovable origin. Remaining:
+1. Vercel dashboard → prompt-tic-tac-toe → Settings → Domains → add
+   `www.playwithprompts.com` (CLI got 403 domain_not_owned; may ask for a TXT).
+2. Cloudflare: www CNAME → `cname.vercel-dns.com`, DNS only. Rollback = restore
+   A 185.158.133.1 Proxied. Then Lovable/Replit can be retired.
+Leftover cleanup someday: Stripe edge functions still deployed on Supabase
+(create-course-checkout, create-subscription-checkout, verify-course-purchase,
+stripe-subscription-webhook) — harmless, nothing calls them.
+
 ## Open items — Ramesh
 
 1. Send sponsor email #1 (drafts: `docs/sponsor-emails.md`); name sponsor price.
