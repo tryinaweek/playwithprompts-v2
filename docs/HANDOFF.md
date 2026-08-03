@@ -28,20 +28,22 @@ Last updated: 2026-08-03
   playwithprompts repo (drafting needs `claude` CLI re-login — expired).
   Challenge bank: 30, fresh through ~Aug 24, then recycles.
 
-## www cutover — ready, needs 2 clicks from Ramesh (2026-08-03)
+## www cutover — DONE 2026-08-03, verified live
 
-Old course site: Stripe paywall REMOVED (no paid subs existed — confirmed),
-all courses free, nav stitched (Catch the AI ↔ Playground). Repo
-`prompt-tic-tac-toe/` (= github tryinaweek/playwithprompts) deployed fresh to
-Vercel project `prompt-tic-tac-toe`; all routes verified 200. Live www is an
-OLDER snapshot than the repo (old title), still on Lovable origin. Remaining:
-1. Vercel dashboard → prompt-tic-tac-toe → Settings → Domains → add
-   `www.playwithprompts.com` (CLI got 403 domain_not_owned; may ask for a TXT).
-2. Cloudflare: www CNAME → `cname.vercel-dns.com`, DNS only. Rollback = restore
-   A 185.158.133.1 Proxied. Then Lovable/Replit can be retired.
+Old course site now serves from Vercel project `prompt-tic-tac-toe` at
+www.playwithprompts.com (Cloudflare www = CNAME
+17110eaacaaee40b.vercel-dns-016.com, DNS only; rollback = A 185.158.133.1
+Proxied). Lovable/Replit hosting RETIRED. Stripe paywall REMOVED (no paid
+subs existed — confirmed by Ramesh); all courses free; nav stitched both
+ways (game header: Courses → www; old site nav: Catch the AI → apex,
+old game renamed Playground). Full loop verified live: apex=game,
+apex/courses→307 www, catch→308 apex, www routes all 200, zero
+Purchase/Subscribe strings in the shipped bundle, no console errors.
 Leftover cleanup someday: Stripe edge functions still deployed on Supabase
 (create-course-checkout, create-subscription-checkout, verify-course-purchase,
-stripe-subscription-webhook) — harmless, nothing calls them.
+stripe-subscription-webhook) — harmless, nothing calls them. The extra
+`_vercel` TXT (www…,7910289f…) can be deleted post-verification per Vercel,
+but leaving it is fine.
 
 ## Open items — Ramesh
 
