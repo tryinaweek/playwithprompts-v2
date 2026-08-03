@@ -6,3 +6,4 @@ dist
 prompt-tic-tac-toe/
 .local-data/
 .vercel
+.env.generator.local
