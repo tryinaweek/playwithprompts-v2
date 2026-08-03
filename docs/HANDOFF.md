@@ -59,6 +59,19 @@ supabase/migrations/0004_workshop_downloads.sql in the SQL editor,
 (2) adds SUPABASE_SERVICE_ROLE_KEY env var to rameshnuti-v2 in Vercel +
 redeploys.
 
+## One brand, one login — live 2026-08-03
+
+Game (apex) now wears www's exact header/footer (gradient logo + wordmark,
+pill nav: Play/Prompts/Stats + Courses/Daily AI Tip → www; icon footer,
+mobile hamburger). Supabase session moved to chunked cookies on
+.playwithprompts.com in BOTH apps (adapter duplicated: game
+src/lib/cookie-auth-storage.ts = old site
+src/integrations/supabase/cookie-auth-storage.ts — keep in sync!), with
+localStorage fallback + migration of existing sessions. Login on either site
+now carries to the other on next page load. Sign-out on one site clears the
+cookie; the other site stays signed in only until refresh. Ramesh to confirm
+the flow with his real account.
+
 ## Open items — Ramesh
 
 1. Send sponsor email #1 (drafts: `docs/sponsor-emails.md`); name sponsor price.
