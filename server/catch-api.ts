@@ -19,6 +19,7 @@ import {
   daysBetween,
   emptyStreak,
   isCorrectAnswer,
+  pickPracticeId,
   updateStreak,
 } from '../src/game/logic';
 import type {
@@ -26,6 +27,8 @@ import type {
   ChallengeAnswer,
   DailyResponse,
   HistoryEntry,
+  PracticeResult,
+  PracticeRoundResponse,
   ProfileStats,
   PublicChallenge,
   StreakState,
@@ -53,9 +56,18 @@ interface PlayRecord {
   createdAt: string;
 }
 
+interface PracticeRecord {
+  challengeId: string;
+  date: string;
+  correct: boolean;
+  score: number;
+  timeMs: number;
+}
+
 interface PlayerRecord {
   streak: StreakState;
   plays: Record<string, PlayRecord>;
+  practice?: PracticeRecord[];
 }
 
 interface EventRecord {
@@ -318,14 +330,84 @@ export function catchApiPlugin(): Plugin {
                 score: p.score,
               };
             });
+            const practice = player.practice ?? [];
             const stats: ProfileStats = {
               roundsPlayed: plays.length,
               correctCount,
               accuracy: plays.length ? Math.round((correctCount / plays.length) * 100) : 0,
               streak: player.streak,
               history,
+              practiceRounds: practice.length,
+              practiceCorrect: practice.filter((p) => p.correct).length,
             };
             json(res, 200, stats);
+            return;
+          }
+
+          if (route === '/api/catch/practice' && req.method === 'GET') {
+            const date = url.searchParams.get('date') ?? '';
+            if (!DATE_RE.test(date)) {
+              fail(res, 400, 'invalid date');
+              return;
+            }
+            const player = getPlayer(db, playerId);
+            const practice = player.practice ?? [];
+            const playedToday = practice.filter((p) => p.date === date).length;
+            const remainingToday = Math.max(0, 30 - playedToday);
+            if (remainingToday === 0) {
+              fail(res, 429, 'practice limit reached — come back tomorrow');
+              return;
+            }
+            const daily = challengeForDate(challenges, date);
+            const seen = new Set(practice.map((p) => p.challengeId));
+            const exclude = new Set(daily ? [daily.challenge.id] : []);
+            const id = pickPracticeId(challenges.map((c) => c.id), seen, exclude, Math.random());
+            const challenge = challenges.find((c) => c.id === id);
+            if (!challenge) {
+              fail(res, 404, 'no practice challenge available');
+              return;
+            }
+            const response: PracticeRoundResponse = {
+              challenge: toPublic(challenge, 0, date),
+              remainingToday,
+            };
+            json(res, 200, response);
+            return;
+          }
+
+          if (route === '/api/catch/practice-submit' && req.method === 'POST') {
+            let body: { date?: string; challengeId?: string; answer?: unknown; timeMs?: unknown };
+            try {
+              body = JSON.parse(await readBody(req));
+            } catch {
+              fail(res, 400, 'invalid json');
+              return;
+            }
+            const date = body.date ?? '';
+            if (!DATE_RE.test(date) || !isValidAnswer(body.answer)) {
+              fail(res, 400, 'invalid request');
+              return;
+            }
+            const challenge = challenges.find((c) => c.id === body.challengeId);
+            if (!challenge) {
+              fail(res, 404, 'unknown challenge');
+              return;
+            }
+            const timeMs = typeof body.timeMs === 'number' ? Math.min(Math.max(body.timeMs, 0), 600_000) : 600_000;
+            const correct = isCorrectAnswer(challenge, body.answer);
+            const score = computeScore(correct, timeMs);
+            const player = getPlayer(db, playerId);
+            player.practice = [...(player.practice ?? []), { challengeId: challenge.id, date, correct, score, timeMs }];
+            saveDb(db);
+            const result: PracticeResult = {
+              correct,
+              score,
+              timeMs,
+              answer: challenge.answer,
+              playerAnswer: body.answer,
+              explanation: challenge.explanation,
+            };
+            json(res, 200, result);
             return;
           }
 

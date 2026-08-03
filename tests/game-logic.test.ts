@@ -7,6 +7,7 @@ import {
   emptyStreak,
   isCorrectAnswer,
   MAX_FREEZES,
+  pickPracticeId,
   updateStreak,
 } from '../src/game/logic';
 import type { Challenge, StreakState } from '../src/types/catch';
@@ -180,5 +181,29 @@ describe('buildShareText', () => {
     expect(text).toContain('got fooled');
     expect(text).not.toContain('Top');
     expect(text).not.toContain('streak');
+  });
+});
+
+describe('pickPracticeId', () => {
+  const bank = ['a', 'b', 'c', 'd'];
+
+  it('should prefer challenges the player has not seen', () => {
+    const id = pickPracticeId(bank, new Set(['a', 'b']), new Set(), 0);
+    expect(['c', 'd']).toContain(id);
+  });
+
+  it('should never serve an excluded challenge, even when everything is seen', () => {
+    const id = pickPracticeId(bank, new Set(bank), new Set(['a']), 0.99);
+    expect(id).not.toBe('a');
+    expect(id).not.toBeNull();
+  });
+
+  it('should allow repeats once the bank is exhausted', () => {
+    const id = pickPracticeId(bank, new Set(bank), new Set(), 0);
+    expect(bank).toContain(id);
+  });
+
+  it('should return null when every challenge is excluded', () => {
+    expect(pickPracticeId(['a'], new Set(), new Set(['a']), 0)).toBeNull();
   });
 });

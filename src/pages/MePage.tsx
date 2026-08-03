@@ -60,6 +60,14 @@ export function MePage() {
           ))}
         </div>
 
+        {(profile.practiceRounds ?? 0) > 0 && (
+          <div className="mb-8 rounded-xl border border-purple-200 bg-purple-50 p-4 text-sm text-purple-800">
+            <span className="font-semibold">Practice:</span> {profile.practiceRounds} round
+            {profile.practiceRounds === 1 ? '' : 's'} played, {profile.practiceCorrect} caught.
+            Practice never touches your streak.
+          </div>
+        )}
+
         {profile.streak.freezesAvailable > 0 && (
           <div className="mb-8 rounded-xl border border-blue-200 bg-blue-50 p-4 flex items-center gap-3 text-sm text-blue-800">
             <Snowflake className="w-4 h-4 flex-shrink-0" />

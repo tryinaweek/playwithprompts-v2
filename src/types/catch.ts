@@ -90,4 +90,23 @@ export interface ProfileStats {
   accuracy: number;
   streak: StreakState;
   history: HistoryEntry[];
+  /** Practice rounds are tallied separately — they never touch the streak. */
+  practiceRounds?: number;
+  practiceCorrect?: number;
+}
+
+/** A practice round as served to the client. */
+export interface PracticeRoundResponse {
+  challenge: PublicChallenge;
+  /** Rounds left today, or null while the practice table isn't provisioned. */
+  remainingToday: number | null;
+}
+
+export interface PracticeResult {
+  correct: boolean;
+  score: number;
+  timeMs: number;
+  answer: ChallengeAnswer;
+  playerAnswer: ChallengeAnswer;
+  explanation: string;
 }

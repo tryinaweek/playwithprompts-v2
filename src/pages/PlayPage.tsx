@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Play, Timer } from 'lucide-react';
+import { Dumbbell, Play, Timer } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SpotTheSlip } from '@/components/SpotTheSlip';
 import { RealOrRobot } from '@/components/RealOrRobot';
 import { Reveal } from '@/components/Reveal';
+import { PracticeMode } from '@/components/PracticeMode';
 import { fetchDaily, logEvent, submitAnswer } from '@/lib/api';
 import { ROUND_TIME_LIMIT_SECONDS } from '@/game/logic';
 import type { ChallengeAnswer, RealOrRobotPayload, SpotTheSlipPayload, SubmitResult } from '@/types/catch';
@@ -22,6 +23,7 @@ export function PlayPage() {
   const [selected, setSelected] = useState<ChallengeAnswer | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<SubmitResult | null>(null);
+  const [practicing, setPracticing] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(ROUND_TIME_LIMIT_SECONDS);
   const startedAt = useRef<number | null>(null);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -84,6 +86,18 @@ export function PlayPage() {
   const revealed = activeResult
     ? { answer: activeResult.answer, playerAnswer: activeResult.playerAnswer }
     : undefined;
+
+  if (practicing) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="max-w-2xl mx-auto px-4 py-8">
+          <PracticeMode onExit={() => setPracticing(false)} />
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -165,7 +179,18 @@ export function PlayPage() {
               </button>
             )}
 
-            {activeResult && <Reveal result={activeResult} />}
+            {activeResult && (
+              <>
+                <Reveal result={activeResult} />
+                <button
+                  onClick={() => setPracticing(true)}
+                  className="w-full border-2 border-purple-200 text-purple-700 bg-purple-50 hover:bg-purple-100 py-3 px-6 rounded-xl font-medium transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  <Dumbbell className="w-4 h-4" />
+                  Keep playing — practice rounds
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

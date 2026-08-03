@@ -1,4 +1,11 @@
-import type { ChallengeAnswer, DailyResponse, ProfileStats, SubmitResult } from '@/types/catch';
+import type {
+  ChallengeAnswer,
+  DailyResponse,
+  PracticeResult,
+  PracticeRoundResponse,
+  ProfileStats,
+  SubmitResult,
+} from '@/types/catch';
 import { getPlayerId, localDate } from './player';
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -30,6 +37,21 @@ export function submitAnswer(answer: ChallengeAnswer, timeMs: number): Promise<S
 
 export function fetchProfile(): Promise<ProfileStats> {
   return request<ProfileStats>('/api/catch/me');
+}
+
+export function fetchPracticeRound(): Promise<PracticeRoundResponse> {
+  return request<PracticeRoundResponse>(`/api/catch/practice?date=${localDate()}`);
+}
+
+export function submitPracticeAnswer(
+  challengeId: string,
+  answer: ChallengeAnswer,
+  timeMs: number
+): Promise<PracticeResult> {
+  return request<PracticeResult>('/api/catch/practice-submit', {
+    method: 'POST',
+    body: JSON.stringify({ date: localDate(), challengeId, answer, timeMs }),
+  });
 }
 
 export function logEvent(type: 'round_started' | 'card_shared' | 'signup_completed', meta: Record<string, unknown> = {}): void {

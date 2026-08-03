@@ -92,3 +92,22 @@ export function buildShareText(input: ShareTextInput): string {
   const rankPart = !input.correct ? '' : input.rank === 1 ? ' · 🥇 top score' : ` · Top ${input.topPercent}%`;
   return `Catch the AI #${input.number} 🎯 ${outcome}${streakPart}${rankPart}\nplaywithprompts.com`;
 }
+
+/**
+ * Pick the next practice challenge id: prefer ids the player hasn't seen
+ * (excluding today's daily so practice never spoils it); once the bank is
+ * exhausted, repeats are allowed — excluded ids stay excluded either way.
+ * `rand` is injected for testability (0 ≤ rand < 1).
+ */
+export function pickPracticeId(
+  bankIds: string[],
+  seenIds: Set<string>,
+  excludeIds: Set<string>,
+  rand: number
+): string | null {
+  const eligible = bankIds.filter((id) => !excludeIds.has(id));
+  if (eligible.length === 0) return null;
+  const unseen = eligible.filter((id) => !seenIds.has(id));
+  const pool = unseen.length > 0 ? unseen : eligible;
+  return pool[Math.min(pool.length - 1, Math.floor(rand * pool.length))];
+}
