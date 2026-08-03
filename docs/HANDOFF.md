@@ -72,6 +72,22 @@ now carries to the other on next page load. Sign-out on one site clears the
 cookie; the other site stays signed in only until refresh. Ramesh to confirm
 the flow with his real account.
 
+## Practice mode + challenge bank — live 2026-08-03
+
+Catch the AI: after the daily, "Keep playing" starts badged practice rounds
+(30/day cap, separate catch_practice_plays table — streak/percentile stay
+daily-only; Stats shows a practice tally). Bank = 30 seeds + catch_challenges
+in Supabase (service-role read only — holds answers; anon has NO access).
+Pipeline: `npm run bank:generate` (Haiku batches, offline, ~$1-2/500) then
+`npm run bank:verify` (blind judge re-solves without the answer key,
+deactivates disagreements — first run: 210 generated, 131 survived, 38% cut,
+the pass is NOT optional). Keys: ANTHROPIC_API_KEY + SUPABASE_SERVICE_ROLE_KEY
+env (local: .env.generator.local, gitignored; Vercel marks the service key
+sensitive — env pull returns [SENSITIVE], never copy it between projects via
+CLI). Top up the bank when unseen inventory runs low (~monthly at current
+traffic). Note: repeated curl bursts against the apex trip Vercel's security
+checkpoint for that client — verify via browser or space out probes.
+
 ## Open items — Ramesh
 
 1. Send sponsor email #1 (drafts: `docs/sponsor-emails.md`); name sponsor price.
