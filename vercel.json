@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "catch.playwithprompts.com" }],
+      "destination": "https://playwithprompts.com/:path*",
+      "permanent": true
+    },
     { "source": "/courses", "destination": "https://www.playwithprompts.com/courses", "permanent": false },
     { "source": "/courses/:path*", "destination": "https://www.playwithprompts.com/courses/:path*", "permanent": false },
     { "source": "/learn", "destination": "https://www.playwithprompts.com/learn", "permanent": false },
