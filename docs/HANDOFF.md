@@ -88,6 +88,17 @@ CLI). Top up the bank when unseen inventory runs low (~monthly at current
 traffic). Note: repeated curl bursts against the apex trip Vercel's security
 checkpoint for that client — verify via browser or space out probes.
 
+## GPT Garden — moved to rameshnuti.com/gpts 2026-08-04
+
+The 20 custom GPTs from ailab.svyam.co now render at rameshnuti.com/gpts
+(menu+footer under Lab). Same `gpts` table in the brand Supabase (public
+read); manage rows in the Table Editor. Pending Ramesh: Cloudflare redirect
+ailab.svyam.co → rameshnuti.com/gpts (svyam.co zone → Rules → Redirect
+Rules: hostname equals ailab.svyam.co → 301 to
+https://rameshnuti.com/gpts), then retire the Lovable frontend. Repo clone
+at ~/Work_Local/gpt-garden-hub-space (reference only). Suggested later:
+curation pass / active flag, GPTs tab in the admin panel.
+
 ## Open items — Ramesh
 
 1. Send sponsor email #1 (drafts: `docs/sponsor-emails.md`); name sponsor price.
