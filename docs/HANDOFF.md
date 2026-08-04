@@ -130,9 +130,8 @@ curation pass / active flag, GPTs tab in the admin panel.
    Command Center "Send an email" card (segments: test / THE LIST / game
    players / all accounts / per-source; plain text → branded HTML w/
    reply-to-unsubscribe footer; Resend batch API, 2000-recipient cap;
-   blasts logged to catch_events). Endpoint verified live — returns setup
-   error until Ramesh adds RESEND_API_KEY to catch-the-ai Vercel env
-   (create key at resend.com; domain DNS already configured) + redeploys.
+   blasts logged to catch_events). RESEND_API_KEY live; end-to-end verified 2026-08-04 (test email
+   delivered to Ramesh's inbox, sent:1 failures:0).
    Unsubscribes are reply-based v1 — before heavy campaigning, build a real
    unsubscribed flag on people + link.
 5. Weekly rhythm: challenge-bank top-ups, first Rep cadence support.
