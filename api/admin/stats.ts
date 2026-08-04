@@ -145,7 +145,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       };
     })
     .sort((a, b) => b.currentStreak - a.currentStreak || b.rounds - a.rounds)
-    .slice(0, 25);
+    .slice(0, 200);
 
   // ---- THE LIST aggregates -------------------------------------------------
   const peopleRows = people ?? [];

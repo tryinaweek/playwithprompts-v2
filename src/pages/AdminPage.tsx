@@ -64,6 +64,7 @@ export function AdminPage() {
   const [bodyText, setBodyText] = useState('');
   const [replyTo, setReplyTo] = useState('');
   const [sending, setSending] = useState(false);
+  const [playerFilter, setPlayerFilter] = useState<'all' | 'registered'>('all');
 
   const login = async () => {
     setLoading(true);
@@ -264,7 +265,35 @@ export function AdminPage() {
 
         {/* Streak leaderboard */}
         <div className={card}>
-          <h2 className="font-bold text-gray-900 mb-3">Players & streaks</h2>
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-bold text-gray-900">Players & streaks</h2>
+            <div className="flex gap-1.5 ml-auto">
+              {(
+                [
+                  { key: 'all', label: `All (${game.totalPlayers})` },
+                  { key: 'registered', label: `Signed-in (${game.registeredPlayers})` },
+                ] as const
+              ).map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setPlayerFilter(f.key)}
+                  className={`text-[11px] font-bold px-3 py-1.5 rounded-full border transition-colors cursor-pointer ${
+                    playerFilter === f.key
+                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white border-transparent'
+                      : 'text-gray-500 bg-gray-50 border-gray-200 hover:text-gray-900'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {playerFilter === 'registered' && (
+            <p className="text-xs text-gray-500 mb-3">
+              Players who created an account to save their streak — these are your most invested
+              people.
+            </p>
+          )}
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -278,7 +307,9 @@ export function AdminPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {game.leaderboard.map((p) => (
+                {game.leaderboard
+                  .filter((p) => playerFilter === 'all' || p.registered)
+                  .map((p) => (
                   <tr key={p.player} className="text-gray-700">
                     <td className="py-2 pr-4 font-medium">
                       {p.player}
