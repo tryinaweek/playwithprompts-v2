@@ -126,8 +126,15 @@ curation pass / active flag, GPTs tab in the admin panel.
    user/prompt/email management). APIs: /api/admin/stats, /api/admin/export
    (service-role reads, password header). Old www admin's "0 certificates"
    is a bug — there are 2. Next evolution: $ column (leads/revenue) once
-   sponsor/workshop money starts moving; email sending via Resend (DNS ready,
-   needs RESEND_API_KEY).
+   sponsor/workshop money starts moving; email sending SHIPPED 2026-08-04:
+   Command Center "Send an email" card (segments: test / THE LIST / game
+   players / all accounts / per-source; plain text → branded HTML w/
+   reply-to-unsubscribe footer; Resend batch API, 2000-recipient cap;
+   blasts logged to catch_events). Endpoint verified live — returns setup
+   error until Ramesh adds RESEND_API_KEY to catch-the-ai Vercel env
+   (create key at resend.com; domain DNS already configured) + redeploys.
+   Unsubscribes are reply-based v1 — before heavy campaigning, build a real
+   unsubscribed flag on people + link.
 5. Weekly rhythm: challenge-bank top-ups, first Rep cadence support.
 
 ## Standing decisions (don't relitigate without new evidence)
