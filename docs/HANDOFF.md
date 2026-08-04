@@ -117,8 +117,17 @@ curation pass / active flag, GPTs tab in the admin panel.
 2. **Workshop page finish** (blocked on price).
 3. **PWP Phase 1 product plan** — daily-3 home, tips, founder's face; then
    photo rounds ("Real or Robot: photo edition") with HIS photos only.
-4. **Dashboard** — one page: Reach → List → Actives → Leads → $ (after the
-   list has data).
+4. ~~Dashboard~~ — SHIPPED 2026-08-04 as playwithprompts.com/admin
+   ("Command Center", same ADMIN_PASSWORD as rameshnuti admin, env now on
+   catch-the-ai too). One page: THE LIST (total/by-source/latest + CSV export
+   + copy-emails-for-BCC + players CSV), Catch the AI (players, 7d actives,
+   plays/day chart, correct rate, streak leaderboard w/ emails for linked
+   accounts), course counts + deep link to legacy www/admin (which stays for
+   user/prompt/email management). APIs: /api/admin/stats, /api/admin/export
+   (service-role reads, password header). Old www admin's "0 certificates"
+   is a bug — there are 2. Next evolution: $ column (leads/revenue) once
+   sponsor/workshop money starts moving; email sending via Resend (DNS ready,
+   needs RESEND_API_KEY).
 5. Weekly rhythm: challenge-bank top-ups, first Rep cadence support.
 
 ## Standing decisions (don't relitigate without new evidence)
