@@ -7,6 +7,7 @@ import {
   ExternalLink,
   Flame,
   GraduationCap,
+  Send,
   Target,
   Users,
 } from 'lucide-react';
@@ -57,6 +58,12 @@ export function AdminPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [segment, setSegment] = useState('test');
+  const [testEmail, setTestEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [bodyText, setBodyText] = useState('');
+  const [replyTo, setReplyTo] = useState('');
+  const [sending, setSending] = useState(false);
 
   const login = async () => {
     setLoading(true);
@@ -93,6 +100,46 @@ export function AdminPage() {
     a.download = `${what === 'list' ? 'the-list' : 'catch-players'}.csv`;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const sendEmail = async () => {
+    if (!subject.trim() || !bodyText.trim()) {
+      toast.error('Subject and message are required');
+      return;
+    }
+    const isTest = segment === 'test';
+    if (!isTest && !confirm(`Send "${subject.trim()}" to the "${segment}" segment? This emails real people.`)) {
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch('/api/admin/email', {
+        method: 'POST',
+        headers: { 'x-admin-password': password, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          segment,
+          subject: subject.trim(),
+          body: bodyText.trim(),
+          testEmail: testEmail.trim(),
+          replyTo: replyTo.trim() || undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || `Send failed (${res.status})`);
+        return;
+      }
+      const failNote = data.failures?.length ? ` (${data.failures.length} batch failures)` : '';
+      toast.success(`Sent ${data.sent}/${data.total}${failNote}`);
+      if (!isTest) {
+        setSubject('');
+        setBodyText('');
+      }
+    } catch {
+      toast.error('Network error');
+    } finally {
+      setSending(false);
+    }
   };
 
   const copyEmails = async () => {
@@ -313,6 +360,90 @@ export function AdminPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Send email */}
+        <div className={card}>
+          <div className="flex items-center gap-2 mb-1">
+            <Send className="w-4 h-4 text-purple-500" />
+            <h2 className="font-bold text-gray-900">Send an email</h2>
+          </div>
+          <p className="text-xs text-gray-500 mb-4">
+            Plain text in, branded email out (purple header, unsubscribe footer). Always test on
+            yourself first.
+          </p>
+          <div className="grid md:grid-cols-2 gap-3 mb-3">
+            <div>
+              <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                Send to
+              </label>
+              <select
+                value={segment}
+                onChange={(e) => setSegment(e.target.value)}
+                className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:border-purple-400 focus:outline-none"
+              >
+                <option value="test">🧪 Just a test address</option>
+                <option value="all">THE LIST — everyone ({list.total})</option>
+                <option value="players">Game players with accounts ({game.registeredPlayers})</option>
+                <option value="accounts">All registered accounts (~{courses.users ?? '?'})</option>
+                {list.bySource
+                  .filter((s) => s.source !== 'verify-test')
+                  .map((s) => (
+                    <option key={s.source} value={`source:${s.source}`}>
+                      Source: {s.source} ({s.n})
+                    </option>
+                  ))}
+              </select>
+            </div>
+            {segment === 'test' ? (
+              <div>
+                <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Test address
+                </label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={testEmail}
+                  onChange={(e) => setTestEmail(e.target.value)}
+                  className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:border-purple-400 focus:outline-none"
+                />
+              </div>
+            ) : (
+              <div>
+                <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Reply-to (optional)
+                </label>
+                <input
+                  type="email"
+                  placeholder="replies go to hello@ unless set"
+                  value={replyTo}
+                  onChange={(e) => setReplyTo(e.target.value)}
+                  className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:border-purple-400 focus:outline-none"
+                />
+              </div>
+            )}
+          </div>
+          <input
+            type="text"
+            placeholder="Subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm mb-3 focus:border-purple-400 focus:outline-none"
+          />
+          <textarea
+            placeholder={'Write like a human. Blank line = new paragraph.\nLinks like playwithprompts.com become clickable.'}
+            value={bodyText}
+            onChange={(e) => setBodyText(e.target.value)}
+            className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm min-h-[140px] mb-3 focus:border-purple-400 focus:outline-none"
+          />
+          <button
+            onClick={() => void sendEmail()}
+            disabled={sending}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2.5 rounded-xl text-sm font-medium disabled:opacity-40 inline-flex items-center gap-2"
+          >
+            <Send className="w-4 h-4" />
+            {sending ? 'Sending…' : segment === 'test' ? 'Send test' : 'Send campaign'}
+          </button>
         </div>
 
         {/* Courses deep link */}
